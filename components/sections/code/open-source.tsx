@@ -64,20 +64,18 @@ const OpenSourceSection = () => (
     }}
     headingContainerPushSx={{ mb: 4 }}
   >
-    <Button sx={{ variant: "layout.flexCenter" }}>
-      <A
-        href="https://github.com/livepeer/"
-        target="_blank"
-        rel="noopener noreferrer"
-        variant="default"
-        sx={{ display: "flex" }}
-      >
-        View All Projects{" "}
-        <i sx={{ ml: 2, fontSize: 4 }}>
-          <FiArrowUpRight />
-        </i>
-      </A>
-    </Button>
+    <A
+      href="https://github.com/livepeer/"
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="buttons.primary"
+      sx={{ display: "flex" }}
+    >
+      View All Projects{" "}
+      <i sx={{ ml: 2, fontSize: 4 }}>
+        <FiArrowUpRight />
+      </i>
+    </A>
     <Divider isVertical isTransparent size={["56px", "72px"]} />
     <KeenSliderGrid
       breakpoints={[

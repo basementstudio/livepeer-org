@@ -57,20 +57,18 @@ const WhoIsBuildingSection = () => (
       py: ["80px", "160px"]
     }}
   >
-    <Button sx={{ variant: "layout.flexCenter" }}>
-      <A
-        href="https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532"
-        target="_blank"
-        rel="noopener noreferrer"
-        variant="default"
-        sx={{ display: "flex" }}
-      >
-        Meet the Team Behind Livepeer Inc.{" "}
-        <i sx={{ ml: 2, fontSize: 4 }}>
-          <FiArrowUpRight />
-        </i>
-      </A>
-    </Button>
+    <A
+      href="https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532"
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="buttons.primary"
+      sx={{ display: "flex" }}
+    >
+      Meet the Team Behind Livepeer Inc.{" "}
+      <i sx={{ ml: 2, fontSize: 4 }}>
+        <FiArrowUpRight />
+      </i>
+    </A>
     <Slider pushSx={{ my: 5 }} numberOfCopies={4} duration={20}>
       {images.map((img) => (
         <div key={`slider-image-${img.src}`} sx={{ mx: 4, ...img.sx }}>
