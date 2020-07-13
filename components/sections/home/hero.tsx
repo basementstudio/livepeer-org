@@ -38,7 +38,7 @@ const HomeHero = () => (
             open&nbsp;
           </Text>
           <br sx={{ display: ["none", null, "block"] }} />
-          Video Infrascructure
+          Video Infrastructure
         </Heading>
         <Divider isTransparent isVertical size={["12px", "16px", "24px"]} />
         <Heading variant="section.subtitle">
