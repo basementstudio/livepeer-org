@@ -81,8 +81,8 @@ const JumpInSlider = () => {
         "Help contribute to Livepeer’s open source technology projects as a developer or contributor.",
       linkProps: {
         link: {
-          label: "/code",
-          href: "/code"
+          label: "/oss",
+          href: "/oss"
         },
         isDark: true
       },
