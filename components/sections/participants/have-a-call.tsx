@@ -41,7 +41,7 @@ const cards: ImageCardProps[] = [
   }
 ]
 
-const HaveACallSection = () => (
+const HaveACallSection = ({ youtubeVideos }) => (
   <SectionLayout
     title="Let's Have a Call"
     subtitle={
@@ -64,10 +64,22 @@ const HaveACallSection = () => (
     }
   >
     <KeenSliderGrid>
-      {cards.map((c) => (
+      {youtubeVideos.map((v) => (
         <ImageCard
-          key={`have-a-call-image-card-${c.description}`}
-          {...c}
+          key={`have-a-call-image-card-${v.snippet.resourceId.videoId}`}
+          title={v.snippet.title}
+          image={{ src: v.snippet.thumbnails.medium.url, alt: v.snippet.title }}
+          footnote={new Date(v.snippet.publishedAt).toLocaleDateString(
+            "en-US",
+            { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+          )}
+          linkProps={{
+            link: {
+              label: "youtube.com",
+              href: "https://youtube.com",
+              isExternal: true
+            }
+          }}
           isLink
         />
       ))}
