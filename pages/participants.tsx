@@ -16,7 +16,7 @@ const ParticipantsPage = ({ youtubeVideos }) => {
           <>
             Join thousands of participants enabling video streaming at scale on
             the open, <br />
-            blockchain based network.
+            blockchain-based network.
           </>
         }
         illustration={<ParticipantsSvg />}

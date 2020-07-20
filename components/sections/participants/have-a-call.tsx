@@ -1,5 +1,5 @@
 import SectionLayout from "components/layouts/section"
-import { Link as A } from "theme-ui"
+import { Link as A, Box } from "theme-ui"
 import ImageCard, { ImageCardProps } from "components/primitives/cards/image"
 import KeenSliderGrid from "components/layouts/keen-slider-grid"
 
@@ -67,7 +67,18 @@ const HaveACallSection = ({ youtubeVideos }) => (
       {youtubeVideos.map((v) => (
         <ImageCard
           key={`have-a-call-image-card-${v.snippet.resourceId.videoId}`}
-          title={v.snippet.title}
+          title={
+            <Box
+              sx={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                maxWidth: "85ch"
+              }}
+            >
+              {v.snippet.title}
+            </Box>
+          }
           image={{ src: v.snippet.thumbnails.medium.url, alt: v.snippet.title }}
           footnote={new Date(v.snippet.publishedAt).toLocaleDateString(
             "en-US",
