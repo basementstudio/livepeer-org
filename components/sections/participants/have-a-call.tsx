@@ -86,8 +86,8 @@ const HaveACallSection = ({ youtubeVideos }) => (
           )}
           linkProps={{
             link: {
-              label: "youtube.com",
-              href: "https://youtube.com",
+              label: `youtu.be/${v.snippet.resourceId.videoId}`,
+              href: `https://youtu.be/${v.snippet.resourceId.videoId}`,
               isExternal: true
             }
           }}
