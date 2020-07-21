@@ -41,4 +41,5 @@ export async function getStaticProps() {
     unstable_revalidate: 1
   }
 }
+
 export default ParticipantsPage
