@@ -1,10 +1,8 @@
 import SectionLayout from "components/layouts/section"
 import { Grid } from "theme-ui"
 import HugeCard, { HugeCardProps } from "components/primitives/cards/huge"
-import {
-  GetTokenSvg,
-  StakeTokenSvg
-} from "components/svgs/tokenholder-card-headers"
+import NetworkSvg from "components/svgs/network"
+import HostedApiSvg from "components/svgs/hosted-api"
 
 const cards: HugeCardProps[] = [
   {
@@ -22,7 +20,7 @@ const cards: HugeCardProps[] = [
       href: "https://livepeer.readthedocs.io/"
     },
     accent: "primary",
-    headerIllustration: <StakeTokenSvg />
+    headerIllustration: <NetworkSvg />
   },
   {
     titleLabel: "Build with",
@@ -39,7 +37,7 @@ const cards: HugeCardProps[] = [
       href: "https://livepeer.com"
     },
     accent: "secondary",
-    headerIllustration: <GetTokenSvg />
+    headerIllustration: <HostedApiSvg pushSx={{ minWidth: "968px" }} />
   }
 ]
 

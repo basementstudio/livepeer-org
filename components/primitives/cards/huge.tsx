@@ -71,12 +71,17 @@ const HugeCard = ({
           position: "absolute",
           top: ["-120px", "-110px", null, "-100px"],
           left: ["-172px", "-142px", null, "-118px"],
-          pointerEvents: "none"
+          pointerEvents: "none",
+          width: "464px",
+          height: "464px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
         }}
       >
         {headerIllustration}
       </Box>
-      <div>
+      <div sx={{ zIndex: "general", position: "relative" }}>
         <Text variant="large" sx={{ textAlign: "left" }}>
           {titleLabel}
         </Text>
