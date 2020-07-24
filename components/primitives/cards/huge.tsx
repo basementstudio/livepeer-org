@@ -24,7 +24,7 @@ type ButtonCta = {
 type LinkCta = { isLink: true } & LinkProps
 
 export type HugeCardProps = {
-  title: string
+  title: React.ReactNode
   titleLabel: string
   accent: "primary" | "secondary"
   cta?: ButtonCta | LinkCta

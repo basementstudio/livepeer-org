@@ -1,5 +1,6 @@
+/** @jsx jsx */
+import { jsx, Grid } from "theme-ui"
 import SectionLayout from "components/layouts/section"
-import { Grid } from "theme-ui"
 import HugeCard, { HugeCardProps } from "components/primitives/cards/huge"
 import NetworkSvg from "components/svgs/network"
 import HostedApiSvg from "components/svgs/hosted-api"
@@ -24,7 +25,12 @@ const cards: HugeCardProps[] = [
   },
   {
     titleLabel: "Build with",
-    title: "A Hosted API",
+    title: (
+      <>
+        A Hosted
+        <br sx={{ display: ["none", "initial"] }} /> API
+      </>
+    ),
     listItems: [
       "Earns you the right to perform or delegate work on the Livepeer network and vote on protocol proposals",
       "Routes work through the network in proportion to the amount of staked and delegated token, serving as a coordination mechanism",
