@@ -79,6 +79,7 @@ const HaveACallSection = ({ youtubeVideos }) => (
               {v.snippet.title}
             </Box>
           }
+          gradientEffect={true}
           image={{ src: v.snippet.thumbnails.high.url, alt: v.snippet.title }}
           footnote={new Date(v.snippet.publishedAt).toLocaleDateString(
             "en-US",
