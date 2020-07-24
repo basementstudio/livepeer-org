@@ -29,7 +29,7 @@ export type HugeCardProps = {
   accent: "primary" | "secondary"
   cta?: ButtonCta | LinkCta
   headerIllustration: React.ReactNode
-  listItems: string[]
+  listItems: React.ReactNode[]
 }
 
 const HugeCard = ({

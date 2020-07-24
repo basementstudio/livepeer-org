@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Grid } from "theme-ui"
+import { jsx, Grid, Text, Box } from "theme-ui"
 import SectionLayout from "components/layouts/section"
 import HugeCard, { HugeCardProps } from "components/primitives/cards/huge"
 import NetworkSvg from "components/svgs/network"
@@ -10,9 +10,46 @@ const cards: HugeCardProps[] = [
     titleLabel: "Build with",
     title: "The Public Network",
     listItems: [
-      "ERC-20 token available on a number of non-custodial and custodial exchanges",
-      "Originally distributed via a “Merkle Mine”, an algorithm for decentralized distribution of token during the genesis state",
-      "Inflationary  according to algorithmically programmed issuance over time"
+      <Box>
+        <Text
+          sx={{
+            textAlign: "left",
+            lineHeight: 1,
+            mb: 2
+          }}
+          variant="large"
+        >
+          Decentralized
+        </Text>
+        No single company or individual controls the Livepeer network. Build
+        video apps that connect directly with your audience.
+      </Box>,
+      <Box>
+        <Text
+          sx={{
+            textAlign: "left",
+            lineHeight: 1,
+            mb: 2
+          }}
+          variant="large"
+        >
+          Low Cost
+        </Text>
+        Crypto payments for transcoding at the lowest possible cost
+      </Box>,
+      <Box>
+        <Text
+          sx={{
+            textAlign: "left",
+            lineHeight: 1,
+            mb: 2
+          }}
+          variant="large"
+        >
+          Flexible
+        </Text>
+        Flexibility and control of using an OSS stack
+      </Box>
     ],
     cta: {
       label: "Read the docs",
@@ -28,13 +65,51 @@ const cards: HugeCardProps[] = [
     title: (
       <>
         A Hosted
-        <br sx={{ display: ["none", "initial"] }} /> API
+        <br sx={{ display: ["none", "initial"] }} /> Service
       </>
     ),
     listItems: [
-      "Earns you the right to perform or delegate work on the Livepeer network and vote on protocol proposals",
-      "Routes work through the network in proportion to the amount of staked and delegated token, serving as a coordination mechanism",
-      "Secures the network against a number of attacks via slashing that occurs due to protocol violation"
+      <Box>
+        <Text
+          sx={{
+            textAlign: "left",
+            lineHeight: 1,
+            mb: 2
+          }}
+          variant="large"
+        >
+          Easy to use
+        </Text>
+        Straight forward API’s without the complexities of crypto or blockchain.
+      </Box>,
+      <Box>
+        <Text
+          sx={{
+            textAlign: "left",
+            lineHeight: 1,
+            mb: 2
+          }}
+          variant="large"
+        >
+          Powered by the Public Network
+        </Text>
+        Cheap transcoding powered by the public network allows you to operate a
+        UGC platform with millions of content creators
+      </Box>,
+      <Box>
+        <Text
+          sx={{
+            textAlign: "left",
+            lineHeight: 1,
+            mb: 2
+          }}
+          variant="large"
+        >
+          Smart Video
+        </Text>
+        Content moderation necessary in running UGC platforms such as flagging
+        adult content
+      </Box>
     ],
     cta: {
       label: "Visit livepeer.com",
