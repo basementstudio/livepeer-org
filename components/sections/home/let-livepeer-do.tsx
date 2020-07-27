@@ -37,7 +37,6 @@ const LetLivepeerDoSection = () => (
     titleLabel="Get Started"
     title="What role will you play in the Livepeer network?"
     subtitle="Jump in by choosing the option that best describes your interest:"
-    background="muted"
     id="get-started"
   >
     <Grid
