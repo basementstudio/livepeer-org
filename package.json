@@ -14,7 +14,7 @@
     "lint:staged": "lint-staged --quiet"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.6.14",
+    "@mdx-js/loader": "^1.6.15",
     "@next/mdx": "^9.5.0",
     "@sindresorhus/slugify": "^1.1.0",
     "classnames": "^2.2.6",
@@ -23,10 +23,10 @@
     "next": "^9.5.0",
     "next-compose-plugins": "^2.2.0",
     "next-svgr": "^0.0.2",
-    "next-transpile-modules": "^4.0.0",
+    "next-transpile-modules": "^4.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-hook-form": "^6.1.0",
+    "react-hook-form": "^6.1.2",
     "react-icons": "^3.10.0",
     "react-use-mailchimp": "^0.4.0",
     "theme-ui": "^0.3.1",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
-    "@types/node": "^14.0.26",
+    "@types/node": "^14.0.27",
     "@types/react": "^16.9.43",
     "@types/theme-ui": "^0.3.5",
     "babel-eslint": "^10.1.0",
@@ -44,15 +44,12 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.4",
+    "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "typescript": "^3.9.7"
-  },
-  "resolutions": {
-    "webpack": "^5.0.0-beta.22"
   },
   "yarn-upgrade-all": {
     "ignore": [
