@@ -55,7 +55,6 @@ const stats: StatProps[] = [
 
 const ByTheNumbersSection = () => (
   <SectionLayout
-    background="muted"
     title="Livepeer by the numbers"
     subtitle={
       <>

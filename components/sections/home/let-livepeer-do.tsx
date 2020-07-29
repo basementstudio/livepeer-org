@@ -38,6 +38,7 @@ const LetLivepeerDoSection = () => (
     title="What role will you play in the Livepeer network?"
     subtitle="Jump in by choosing the option that best describes your interest:"
     id="get-started"
+    background="muted"
   >
     <Grid
       gap={4}

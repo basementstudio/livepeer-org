@@ -5,7 +5,7 @@ import Divider from "components/primitives/divider"
 
 const HomeHero = () => {
   return (
-    <Box sx={{ bg: "dark", position: "relative" }}>
+    <Box sx={{ position: "relative" }}>
       <Container
         variant="section"
         sx={{
@@ -17,7 +17,6 @@ const HomeHero = () => {
           overflow: "visible",
           pt: "200px",
           pb: 0,
-          bg: "muted",
           maxWidth: "100%"
         }}
       >
