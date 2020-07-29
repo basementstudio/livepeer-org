@@ -24,8 +24,6 @@ export default function Globe() {
 
   useEffect(() => {
     const { canvas, scene, camera, renderer } = useWebGL() // eslint-disable-line
-    const { width, height } = ref.current.getBoundingClientRect()
-
     const convertFlatCoordsToSphereCoords = (x, y) => {
       let latitude = ((x - globeWidth) / globeWidth) * -180
       let longitude = ((y - globeHeight) / globeHeight) * -90
@@ -43,12 +41,7 @@ export default function Globe() {
     ref.current.appendChild(canvas)
 
     for (let point of coordinates.points) {
-      const { x, y, z } = convertFlatCoordsToSphereCoords(
-        point.x,
-        point.y,
-        width,
-        height
-      )
+      const { x, y, z } = convertFlatCoordsToSphereCoords(point.x, point.y)
 
       if (x && y && z) {
         pointGeometry.translate(x, y, z)
@@ -78,7 +71,15 @@ export default function Globe() {
     }
 
     animate()
-  }, [mergedGeometry, pointGeometry, pointMaterial, globeHeight, globeWidth])
+  }, [
+    mergedGeometry,
+    pointGeometry,
+    pointMaterial,
+    globeHeight,
+    globeWidth,
+    sphereGeometry,
+    sphereMaterial
+  ])
 
   return (
     <div
