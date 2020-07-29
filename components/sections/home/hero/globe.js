@@ -1,24 +1,24 @@
 import * as THREE from "three"
 import { useEffect, useRef } from "react"
 import useWebGL from "effects/globe/hooks/use-webgl"
-// import GlobeEffect from "effects/globe/globe-effect"
-// import useRAF from "effects/globe/hooks/use-raf"
+import OrbitControls from "effects/globe/js/OrbitControls"
 import coordinates from "effects/globe/points.json"
 
 export default function Mosaic() {
   const ref = useRef(null)
-  const globeRadius = 100
+  const globeRadius = 200
   const globeWidth = 4098 / 2
   const globeHeight = 1968 / 2
   const mergedGeometry = new THREE.Geometry()
-  // - Material that the dots will be made of.
-  const pointGeometry = new THREE.SphereGeometry(0.5, 1, 1)
+  const pointGeometry = new THREE.SphereGeometry(0.5, 0.5, 1)
   const pointMaterial = new THREE.MeshBasicMaterial({
     color: "#000"
   })
 
   useEffect(() => {
-    const { canvas, scene, viewsize, camera } = useWebGL() // eslint-disable-line
+    const { canvas, scene, camera, viewsize, renderer } = useWebGL() // eslint-disable-line
+    const { width, height } = ref.current.getBoundingClientRect()
+
     const convertFlatCoordsToSphereCoords = (x, y) => {
       let latitude = ((x - globeWidth) / globeWidth) * -180
       let longitude = ((y - globeHeight) / globeHeight) * -90
@@ -32,14 +32,15 @@ export default function Mosaic() {
         z: Math.sin(latitude) * radius
       }
     }
+
     ref.current.appendChild(canvas)
 
     for (let point of coordinates.points) {
       const { x, y, z } = convertFlatCoordsToSphereCoords(
         point.x,
         point.y,
-        viewsize.width,
-        viewsize.height
+        width,
+        height
       )
 
       if (x && y && z) {
@@ -52,10 +53,21 @@ export default function Mosaic() {
     const globeShape = new THREE.Mesh(mergedGeometry, pointMaterial)
     scene.add(globeShape)
 
-    console.log(camera)
-    // camera.controls.update()
-    // RAF(animate)
-    // renderer.render(scene, camera)
+    camera.orbitControls = new OrbitControls(camera, canvas)
+    camera.orbitControls.enableKeys = false
+    camera.orbitControls.enablePan = false
+    camera.orbitControls.enableZoom = false
+    camera.orbitControls.enableDamping = false
+    camera.orbitControls.enableRotate = true
+    camera.orbitControls.autoRotate = true
+
+    const animate = () => {
+      camera.orbitControls.update()
+      requestAnimationFrame(animate)
+      renderer.render(scene, camera)
+    }
+
+    animate()
   }, [mergedGeometry, pointGeometry, pointMaterial, globeHeight, globeWidth])
 
   return (
@@ -67,8 +79,7 @@ export default function Mosaic() {
         position: "absolute",
         top: 0,
         left: 0,
-        zIndex: 0,
-        backgroundColor: "pink"
+        zIndex: 0
       }}
     />
   )

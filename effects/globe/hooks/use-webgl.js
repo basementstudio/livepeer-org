@@ -18,13 +18,11 @@ class WebGL {
 
     // camera
     this.camera = new THREE.PerspectiveCamera(
-      40,
-      viewport.width / viewport.height,
-      0.1,
-      100000
+      45,
+      viewport.width / viewport.height
     )
 
-    this.camera.position.z = 8
+    this.camera.position.z = 550
 
     // canvas
     this.canvas = document.createElement("canvas")
@@ -40,7 +38,8 @@ class WebGL {
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       context,
-      scene: this.scene
+      scene: this.scene,
+      antialias: true
     })
     this.renderer.setSize(viewport.width, viewport.height)
     this.renderer.setPixelRatio(1)
