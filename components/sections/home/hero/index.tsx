@@ -1,16 +1,9 @@
 /** @jsx jsx */
-import { jsx, Container, Heading, Text, Box, Image, Link as A } from "theme-ui"
+import { jsx, Container, Heading, Text, Box, Link as A } from "theme-ui"
+import Globe from "./globe"
 import Divider from "components/primitives/divider"
 
 const HomeHero = () => {
-  const video = [
-    "/hero-videos/1-final.mp4",
-    "/hero-videos/2-final.mp4",
-    "/hero-videos/3-final.mp4",
-    "/hero-videos/4-final.mp4",
-    "/hero-videos/5-final.mp4"
-  ]
-
   return (
     <Box sx={{ bg: "dark", position: "relative" }}>
       <Container
@@ -78,38 +71,8 @@ const HomeHero = () => {
         >
           Get started
         </A>
-        <Box sx={{ position: "relative" }}>
-          <Image src="/images/hero/world.png" alt="" />
-          <Image
-            sx={{ position: "absolute", left: "0", top: "0", zIndex: 100 }}
-            src="/images/hero/overlay.png"
-            alt=""
-          />
-          <video
-            style={{
-              position: "absolute",
-              left: "50%",
-              bottom: "0",
-              transform: "translateX(-50%)",
-              borderRadius: "8px",
-              zIndex: 100,
-              width: "30vw"
-            }}
-            playsInline
-            muted
-            autoPlay
-            loop
-            controls
-            controlsList="nodownload nofullscreen noremoteplayback"
-            preload="none"
-            width="100%"
-          >
-            <source
-              id="mp4"
-              src={video[Math.floor(Math.random() * 10 + 1) % video.length]}
-              type="video/mp4"
-            />
-          </video>
+        <Box sx={{ position: "relative", width: "100vw", height: "100%" }}>
+          <Globe />
         </Box>
       </Container>
     </Box>

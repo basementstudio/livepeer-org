@@ -1,7 +1,7 @@
 import * as THREE from "three"
 
-import useViewport from "../hooks/use-viewport"
-import useRAF from "../hooks/use-raf.js"
+import useViewport from "./use-viewport"
+import useRAF from "./use-raf.js"
 
 let webgl
 
