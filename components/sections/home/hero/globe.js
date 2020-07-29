@@ -2,12 +2,6 @@ import * as THREE from "three"
 import { useEffect, useRef } from "react"
 import useWebGL from "effects/globe/hooks/use-webgl"
 import OrbitControls from "effects/globe/js/OrbitControls"
-import {
-  BloomEffect,
-  EffectComposer,
-  EffectPass,
-  RenderPass
-} from "effects/globe/js/postprocessing"
 import coordinates from "effects/globe/points.json"
 
 export default function Globe() {
@@ -30,10 +24,6 @@ export default function Globe() {
 
   useEffect(() => {
     const { canvas, scene, camera, renderer } = useWebGL() // eslint-disable-line
-    renderer.setPixelRatio(3)
-    renderer.autoClear = false
-
-    const composer = new EffectComposer(renderer)
 
     const convertFlatCoordsToSphereCoords = (x, y) => {
       let latitude = ((x - globeWidth) / globeWidth) * -180
@@ -60,8 +50,10 @@ export default function Globe() {
         pointGeometry.translate(-x, -y, -z)
       }
     }
+
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
     scene.add(sphere)
+
     const globeShape = new THREE.Mesh(mergedGeometry, pointMaterial)
     scene.add(globeShape)
 
@@ -73,17 +65,10 @@ export default function Globe() {
     camera.orbitControls.enableRotate = false
     camera.orbitControls.autoRotate = true
 
-    composer.addPass(new RenderPass(scene, camera))
-    composer.addPass(new EffectPass(camera, new BloomEffect({ strenght: 3 })))
-
-    // let pixelRatio = window.devicePixelRatio || 0
-
-    // composer.setSize(viewsize.width * pixelRatio, viewsize.height * pixelRatio)
-
     const animate = () => {
       camera.orbitControls.update()
       requestAnimationFrame(animate)
-      composer.render(scene, camera)
+      renderer.render(scene, camera)
     }
 
     animate()
