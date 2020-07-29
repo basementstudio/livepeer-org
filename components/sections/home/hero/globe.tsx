@@ -2,6 +2,12 @@ import * as THREE from "three"
 import { useEffect, useRef } from "react"
 import useWebGL from "effects/globe/hooks/use-webgl"
 import OrbitControls from "effects/globe/js/OrbitControls"
+import {
+  BloomEffect,
+  EffectComposer,
+  EffectPass,
+  RenderPass
+} from "effects/globe/js/postprocessing"
 import coordinates from "effects/globe/points.json"
 
 export default function Globe() {
@@ -15,15 +21,20 @@ export default function Globe() {
     color: "#fff"
   })
 
-  const sphereGeometry = new THREE.SphereGeometry(200, 64, 64)
+  const sphereGeometry = new THREE.SphereGeometry(200, 128, 128)
   const sphereMaterial = new THREE.MeshBasicMaterial({
     transparent: true,
     opacity: 0.3,
-    color: "rgb(209,209,209)"
+    color: "#777"
   })
 
   useEffect(() => {
     const { canvas, scene, camera, renderer } = useWebGL() // eslint-disable-line
+    renderer.setPixelRatio(3)
+    renderer.autoClear = false
+
+    const composer = new EffectComposer(renderer)
+
     const convertFlatCoordsToSphereCoords = (x, y) => {
       let latitude = ((x - globeWidth) / globeWidth) * -180
       let longitude = ((y - globeHeight) / globeHeight) * -90
@@ -62,12 +73,17 @@ export default function Globe() {
     camera.orbitControls.enableRotate = false
     camera.orbitControls.autoRotate = true
 
-    console.log(camera.orbitControls)
+    composer.addPass(new RenderPass(scene, camera))
+    composer.addPass(new EffectPass(camera, new BloomEffect({ strenght: 3 })))
+
+    // let pixelRatio = window.devicePixelRatio || 0
+
+    // composer.setSize(viewsize.width * pixelRatio, viewsize.height * pixelRatio)
 
     const animate = () => {
       camera.orbitControls.update()
       requestAnimationFrame(animate)
-      renderer.render(scene, camera)
+      composer.render(scene, camera)
     }
 
     animate()

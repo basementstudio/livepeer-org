@@ -40,7 +40,10 @@ class WebGL {
       canvas: this.canvas,
       context,
       scene: this.scene,
-      antialias: true
+      antialias: true,
+      powerPreference: "high-performance",
+      stencil: false,
+      depth: false
     })
     this.renderer.setSize(viewport.width, viewport.height)
     this.renderer.setPixelRatio(1)

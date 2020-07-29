@@ -1,7 +1,7 @@
 import SectionLayout from "components/layouts/section"
 import { Grid } from "theme-ui"
 import IconCard, { IconCardProps } from "components/primitives/cards/icon"
-import { FiUserCheck, FiCode, FiBriefcase } from "react-icons/fi"
+import { FiCode } from "react-icons/fi"
 import TokenSvg from "components/svgs/token"
 import GpuSvg from "components/svgs/gpu"
 
