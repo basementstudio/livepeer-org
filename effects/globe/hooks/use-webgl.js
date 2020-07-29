@@ -22,7 +22,8 @@ class WebGL {
       viewport.width / viewport.height
     )
 
-    this.camera.position.z = 550
+    this.camera.position.z = 450
+    this.camera.position.y = 300
 
     // canvas
     this.canvas = document.createElement("canvas")

@@ -13,7 +13,7 @@ const HomeHero = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          height: "100vh",
+          height: "115vh",
           overflow: "visible",
           pt: "200px",
           pb: 0,

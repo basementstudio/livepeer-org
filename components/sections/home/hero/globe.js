@@ -16,7 +16,7 @@ export default function Mosaic() {
   })
 
   useEffect(() => {
-    const { canvas, scene, camera, viewsize, renderer } = useWebGL() // eslint-disable-line
+    const { canvas, scene, camera, renderer } = useWebGL() // eslint-disable-line
     const { width, height } = ref.current.getBoundingClientRect()
 
     const convertFlatCoordsToSphereCoords = (x, y) => {
@@ -58,8 +58,10 @@ export default function Mosaic() {
     camera.orbitControls.enablePan = false
     camera.orbitControls.enableZoom = false
     camera.orbitControls.enableDamping = false
-    camera.orbitControls.enableRotate = true
+    camera.orbitControls.enableRotate = false
     camera.orbitControls.autoRotate = true
+
+    console.log(camera.orbitControls)
 
     const animate = () => {
       camera.orbitControls.update()
