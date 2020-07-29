@@ -13,7 +13,7 @@ const HomeHero = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          height: "115vh",
+          height: "105vh",
           overflow: "visible",
           pt: "200px",
           pb: 0,
@@ -72,6 +72,21 @@ const HomeHero = () => {
         </A>
         <Box sx={{ position: "relative", width: "100vw", height: "100%" }}>
           <Globe />
+          <video
+            sx={{
+              borderRadius: "8px",
+              position: "absolute",
+              left: "50%",
+              bottom: "-10%",
+              transform: "translateX(-50%)",
+              width: "25vw",
+              zIndex: "100"
+            }}
+            src="/hero-videos/1-final.mp4"
+            autoPlay
+            muted
+            playsInline
+          />
         </Box>
       </Container>
     </Box>
