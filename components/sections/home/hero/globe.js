@@ -4,15 +4,22 @@ import useWebGL from "effects/globe/hooks/use-webgl"
 import OrbitControls from "effects/globe/js/OrbitControls"
 import coordinates from "effects/globe/points.json"
 
-export default function Mosaic() {
+export default function Globe() {
   const ref = useRef(null)
   const globeRadius = 200
   const globeWidth = 4098 / 2
   const globeHeight = 1968 / 2
   const mergedGeometry = new THREE.Geometry()
-  const pointGeometry = new THREE.SphereGeometry(0.5, 0.5, 1)
+  const pointGeometry = new THREE.SphereGeometry(1, 1, 1)
   const pointMaterial = new THREE.MeshBasicMaterial({
-    color: "#000"
+    color: "#fff"
+  })
+
+  const sphereGeometry = new THREE.SphereGeometry(200, 64, 64)
+  const sphereMaterial = new THREE.MeshBasicMaterial({
+    transparent: true,
+    opacity: 0.3,
+    color: "rgb(209,209,209)"
   })
 
   useEffect(() => {
@@ -49,7 +56,8 @@ export default function Mosaic() {
         pointGeometry.translate(-x, -y, -z)
       }
     }
-
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    scene.add(sphere)
     const globeShape = new THREE.Mesh(mergedGeometry, pointMaterial)
     scene.add(globeShape)
 
