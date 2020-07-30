@@ -98,7 +98,10 @@ export default function Globe() {
     globeHeight,
     globeWidth,
     sphereGeometry,
-    sphereMaterial
+    sphereMaterial,
+    coloredPointGeometry,
+    coloredPointMaterial,
+    coloredMergedGeometry
   ])
 
   return (
