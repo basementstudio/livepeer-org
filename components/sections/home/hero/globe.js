@@ -1,5 +1,6 @@
 import * as THREE from "three"
 import { useEffect, useRef } from "react"
+import gsap from "gsap"
 import useWebGL from "effects/globe/hooks/use-webgl"
 import OrbitControls from "effects/globe/js/OrbitControls"
 import coordinates from "effects/globe/points.json"
@@ -13,6 +14,13 @@ export default function Globe() {
   const pointGeometry = new THREE.SphereGeometry(1, 1, 1)
   const pointMaterial = new THREE.MeshBasicMaterial({
     color: "#fff"
+  })
+
+  const coloredMergedGeometry = new THREE.Geometry()
+  const coloredPointGeometry = new THREE.SphereGeometry(1.1, 1.1, 1)
+  const coloredPointMaterial = new THREE.MeshBasicMaterial({
+    opacity: 0.7,
+    color: "#00A55F"
   })
 
   const sphereGeometry = new THREE.SphereGeometry(200, 128, 128)
@@ -43,16 +51,27 @@ export default function Globe() {
 
     for (let point of coordinates.points) {
       const { x, y, z } = convertFlatCoordsToSphereCoords(point.x, point.y)
-
       if (x && y && z) {
-        pointGeometry.translate(x, y, z)
-        mergedGeometry.merge(pointGeometry)
-        pointGeometry.translate(-x, -y, -z)
+        if (gsap.utils.random(0, 100, 2) === 40) {
+          coloredPointGeometry.translate(x, y, z)
+          coloredMergedGeometry.merge(coloredPointGeometry)
+          coloredPointGeometry.translate(-x, -y, -z)
+        } else {
+          pointGeometry.translate(x, y, z)
+          mergedGeometry.merge(pointGeometry)
+          pointGeometry.translate(-x, -y, -z)
+        }
       }
     }
 
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
     scene.add(sphere)
+
+    const coloredPoints = new THREE.Mesh(
+      coloredMergedGeometry,
+      coloredPointMaterial
+    )
+    scene.add(coloredPoints)
 
     const globeShape = new THREE.Mesh(mergedGeometry, pointMaterial)
     scene.add(globeShape)
@@ -62,7 +81,7 @@ export default function Globe() {
     camera.orbitControls.enablePan = false
     camera.orbitControls.enableZoom = false
     camera.orbitControls.enableDamping = false
-    camera.orbitControls.enableRotate = false
+    camera.orbitControls.enableRotate = true
     camera.orbitControls.autoRotate = true
 
     const animate = () => {
@@ -87,7 +106,6 @@ export default function Globe() {
       ref={ref}
       style={{
         width: "100vw",
-        height: "100vh",
         position: "absolute",
         top: 0,
         left: 0,
