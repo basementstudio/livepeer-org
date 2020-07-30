@@ -11,13 +11,13 @@ export default function Globe() {
   const globeWidth = 4098 / 2
   const globeHeight = 1968 / 2
   const mergedGeometry = new THREE.Geometry()
-  const pointGeometry = new THREE.SphereGeometry(1, 1, 1)
+  const pointGeometry = new THREE.SphereGeometry(0.8, 8, 8)
   const pointMaterial = new THREE.MeshBasicMaterial({
     color: "#fff"
   })
 
   const coloredMergedGeometry = new THREE.Geometry()
-  const coloredPointGeometry = new THREE.SphereGeometry(1.1, 1.1, 1)
+  const coloredPointGeometry = new THREE.SphereGeometry(1, 8, 8)
   const coloredPointMaterial = new THREE.MeshBasicMaterial({
     opacity: 0.7,
     color: "#00A55F"
@@ -25,9 +25,7 @@ export default function Globe() {
 
   const sphereGeometry = new THREE.SphereGeometry(200, 128, 128)
   const sphereMaterial = new THREE.MeshBasicMaterial({
-    transparent: true,
-    opacity: 0.3,
-    color: "#777"
+    color: "#ccc"
   })
 
   useEffect(() => {
@@ -81,7 +79,7 @@ export default function Globe() {
     camera.orbitControls.enablePan = false
     camera.orbitControls.enableZoom = false
     camera.orbitControls.enableDamping = false
-    camera.orbitControls.enableRotate = true
+    camera.orbitControls.enableRotate = false
     camera.orbitControls.autoRotate = true
 
     const animate = () => {

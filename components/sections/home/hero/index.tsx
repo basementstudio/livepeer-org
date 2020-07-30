@@ -8,6 +8,7 @@ import Divider from "components/primitives/divider"
 
 const HomeHero = () => {
   const animationTimeline = useRef()
+  const dotsRef = useRef()
   const liveDotRef = useRef()
   const videoBoxRef = useRef()
 
@@ -45,6 +46,23 @@ const HomeHero = () => {
       repeat: -1,
       yoyo: true
     })
+    // @ts-ignore
+    animationTimeline.current.to(
+      // @ts-ignore
+      dotsRef.current.getElementsByClassName("highlight-dot"),
+      {
+        duration: 2,
+        y: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: "power0.inOut",
+        stagger: {
+          each: 0.1,
+          from: "center",
+          grid: "auto"
+        }
+      }
+    )
   }, [animationTimeline])
 
   return (
@@ -115,15 +133,33 @@ const HomeHero = () => {
         </A>
         <Box sx={{ position: "relative", width: "100vw", height: "100%" }}>
           <Globe />
-          <GlobeDot left="35%" top="15%" />
-          <GlobeDot left="26%" top="35%" />
-          <GlobeDot left="28%" top="68%" />
-          <GlobeDot left="32%" top="50%" />
+          <div ref={dotsRef}>
+            <GlobeDot image="/images/hero/avatar-1.png" left="35%" top="15%" />
+            <GlobeDot
+              image="/images/hero/avatar-eth.png"
+              left="26%"
+              top="35%"
+            />
+            <GlobeDot
+              image="/images/hero/avatar-livepeer.png"
+              left="28%"
+              top="68%"
+            />
+            <GlobeDot image="/images/hero/avatar-2.png" left="32%" top="50%" />
 
-          <GlobeDot left="65%" top="22%" />
-          <GlobeDot left="60%" top="30%" />
-          <GlobeDot left="75%" top="70%" />
-          <GlobeDot left="67%" top="62%" />
+            <GlobeDot image="/images/hero/avatar-3.png" left="67%" top="62%" />
+            <GlobeDot image="/images/hero/avatar-4.png" left="60%" top="30%" />
+            <GlobeDot
+              image="/images/hero/avatar-livepeer.png"
+              left="65%"
+              top="22%"
+            />
+            <GlobeDot
+              image="/images/hero/avatar-eth.png"
+              left="75%"
+              top="70%"
+            />
+          </div>
           <div
             sx={{
               position: "absolute",
