@@ -21,6 +21,7 @@ const HomeHero = () => {
   ]
 
   useEffect(() => {
+    // @ts-ignore
     animationTimeline.current = gsap.timeline({
       defaults: {
         duration: 0.2,
@@ -29,12 +30,14 @@ const HomeHero = () => {
       }
     })
 
+    // @ts-ignore
     animationTimeline.current.from(videoBoxRef.current, {
       opacity: 0,
       y: -10,
       ease: Power0.easeOut
     })
 
+    // @ts-ignore
     animationTimeline.current.from(liveDotRef.current, {
       duration: 1,
       opacity: 0,
