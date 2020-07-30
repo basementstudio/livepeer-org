@@ -1,25 +1,43 @@
 /** @jsx jsx */
 import { jsx, Container, Heading, Text, Box, Link as A } from "theme-ui"
-import { useRef, useEffect } from "react"
-import gsap, { Power1, Power0 } from "gsap"
+import { useRef, useEffect, useState } from "react"
+import gsap, { Power1 } from "gsap"
+import useEventBus from "effects/globe/hooks/use-events"
 import Globe from "./globe"
 import GlobeDot from "./globe-dots"
 import Divider from "components/primitives/divider"
 
 const HomeHero = () => {
   const animationTimeline = useRef()
+  const [videoSource, setVideoSource] = useState(0)
+  const globeRef = useRef()
   const dotsRef = useRef()
   const liveDotRef = useRef()
+  const videoRef = useRef()
   const videoBoxRef = useRef()
-
   const videos = [
     "/hero-videos/1-final.mp4",
     "/hero-videos/2-final.mp4",
     "/hero-videos/3-final.mp4",
     "/hero-videos/4-final.mp4",
-    "/hero-videos/5-final.mp4",
-    "/hero-videos/6-final.mp4"
+    "/hero-videos/5-final.mp4"
   ]
+  useEffect(() => {
+    //@ts-ignore
+    videoRef.current.addEventListener(
+      "ended",
+      () => {
+        const newSource = videoSource + 1
+
+        if (newSource === videos.length) {
+          setVideoSource(0)
+        } else {
+          setVideoSource(newSource)
+        }
+      },
+      false
+    )
+  })
 
   useEffect(() => {
     // @ts-ignore
@@ -32,20 +50,23 @@ const HomeHero = () => {
     })
 
     // @ts-ignore
-    animationTimeline.current.from(videoBoxRef.current, {
-      opacity: 0,
-      y: -10,
-      ease: Power0.easeOut
-    })
+    animationTimeline.current.to(
+      // @ts-ignore
+      globeRef.current,
+      {
+        opacity: 1
+      }
+    )
 
     // @ts-ignore
-    animationTimeline.current.from(liveDotRef.current, {
-      duration: 1,
-      opacity: 0,
-      scale: 1.5,
-      repeat: -1,
-      yoyo: true
-    })
+    animationTimeline.current.to(
+      // @ts-ignore
+      dotsRef.current.getElementsByClassName("highlight-dot"),
+      {
+        opacity: 1
+      }
+    )
+
     // @ts-ignore
     animationTimeline.current.to(
       // @ts-ignore
@@ -55,7 +76,7 @@ const HomeHero = () => {
         y: 10,
         repeat: -1,
         yoyo: true,
-        ease: "power1.out",
+        ease: "power0.inOut",
         stagger: {
           each: 0.1,
           from: "center",
@@ -132,29 +153,55 @@ const HomeHero = () => {
           Get started
         </A>
         <Box sx={{ position: "relative", width: "100vw", height: "100%" }}>
-          <Globe />
+          <div ref={globeRef}>
+            <Globe />
+          </div>
           <div ref={dotsRef}>
-            <GlobeDot image="/images/hero/avatar-1.png" left="35%" top="15%" />
             <GlobeDot
+              pulsating={videoSource === 0}
+              image="/images/hero/avatar-1.png"
+              left="35%"
+              top="15%"
+            />
+            <GlobeDot
+              pulsating={false}
               image="/images/hero/avatar-eth.png"
               left="26%"
               top="35%"
             />
             <GlobeDot
+              pulsating={false}
               image="/images/hero/avatar-livepeer.png"
               left="28%"
               top="68%"
             />
-            <GlobeDot image="/images/hero/avatar-2.png" left="32%" top="50%" />
-
-            <GlobeDot image="/images/hero/avatar-3.png" left="67%" top="62%" />
-            <GlobeDot image="/images/hero/avatar-4.png" left="60%" top="30%" />
             <GlobeDot
+              pulsating={videoSource === 1}
+              image="/images/hero/avatar-2.png"
+              left="32%"
+              top="50%"
+            />
+
+            <GlobeDot
+              pulsating={videoSource === 2}
+              image="/images/hero/avatar-3.png"
+              left="67%"
+              top="62%"
+            />
+            <GlobeDot
+              pulsating={videoSource === 3}
+              image="/images/hero/avatar-4.png"
+              left="60%"
+              top="30%"
+            />
+            <GlobeDot
+              pulsating={videoSource === 4}
               image="/images/hero/avatar-livepeer.png"
               left="65%"
               top="22%"
             />
             <GlobeDot
+              pulsating={false}
               image="/images/hero/avatar-eth.png"
               left="75%"
               top="70%"
@@ -207,11 +254,11 @@ const HomeHero = () => {
                 borderRadius: "8px",
                 width: "25vw"
               }}
-              src={videos[Math.floor(Math.random() * 10 + 1) % videos.length]}
+              ref={videoRef}
+              src={videos[videoSource]}
               autoPlay
               muted
               playsInline
-              loop
             />
           </div>
         </Box>
