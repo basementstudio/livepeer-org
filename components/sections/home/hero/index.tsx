@@ -55,7 +55,7 @@ const HomeHero = () => {
         y: 10,
         repeat: -1,
         yoyo: true,
-        ease: "power0.inOut",
+        ease: "power1.out",
         stagger: {
           each: 0.1,
           from: "center",
