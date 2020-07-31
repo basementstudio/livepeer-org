@@ -34,6 +34,7 @@ const globeDots = ({ top, left, image, pulsating }) => {
         height: "2.778vw",
         borderRadius: "50%",
         position: "absolute",
+        userSelect: "none",
         top,
         left
       }}

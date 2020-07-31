@@ -15,15 +15,18 @@ const HomeHero = () => {
   const dotsRef = useRef()
 
   const videos = [
-    "/hero-videos/1-final.mp4",
-    "/hero-videos/2-final.mp4",
-    "/hero-videos/3-final.mp4",
-    "/hero-videos/4-final.mp4",
-    "/hero-videos/5-final.mp4"
+    "/hero-videos/1.mp4",
+    "/hero-videos/2.mp4",
+    "/hero-videos/3.mp4",
+    "/hero-videos/4.mp4",
+    "/hero-videos/5.mp4",
+    "/hero-videos/6.mp4",
+    "/hero-videos/7.mp4",
+    "/hero-videos/8.mp4"
   ]
 
   const onVideoChange = () => {
-    console.log('onCHange')
+    console.log("onCHange")
     setGlobeDotIndex(Math.round(Math.random() * 7))
   }
 
