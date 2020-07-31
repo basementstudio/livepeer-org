@@ -26,7 +26,6 @@ const HomeHero = () => {
   ]
 
   const onVideoChange = () => {
-    console.log("onCHange")
     setGlobeDotIndex(Math.round(Math.random() * 7))
   }
 

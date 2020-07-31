@@ -1,10 +1,8 @@
-import { useRef, useEffect, useState } from "react"
+import { useRef, useState, useCallback } from "react"
 
 const VideoSwapper = ({ sources, onChange }) => {
   const videosRef = useRef([])
   const [currentVideo, setCurrentVideo] = useState(0)
-
-  // i === currentVideo || i === currentVideo + 1 % videosRef.current.length ? source : ''
 
   const videos = sources.map((source, i) => (
     <video
@@ -20,23 +18,22 @@ const VideoSwapper = ({ sources, onChange }) => {
         opacity: i === currentVideo ? 1 : 0,
         transition: "opacity 1s ease-out"
       }}
-      // style={{ position: 'absolute', top: 0, left: 0, display: i === currentVideo ? 'block' : 'none' }}
       src={source}
       muted
       playsInline
     />
   ))
 
-  useEffect(() => {
-    videosRef.current[currentVideo].play()
-    onChange()
-  }, [currentVideo])
-
-  const onVideoEnded = (i) => {
-    let index = currentVideo + 1
-    index %= videosRef.current.length
-    setCurrentVideo(index)
-  }
+  const onVideoEnded = useCallback(
+    (i) => {
+      if (!videosRef.current) return
+      const newCurrentVideo = i + 1 < videosRef.current ? i + 1 : 0
+      videosRef.current[newCurrentVideo].play()
+      setCurrentVideo(newCurrentVideo)
+      onChange()
+    },
+    [videosRef, onChange]
+  )
 
   return (
     <div

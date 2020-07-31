@@ -1,44 +1,49 @@
 import * as THREE from "three"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import useWebGL from "effects/globe/hooks/use-webgl"
 import OrbitControls from "effects/globe/js/OrbitControls"
 import coordinates from "effects/globe/points.json"
 
+const globeRadius = 200
+const globeWidth = 4098 / 2
+const globeHeight = 1968 / 2
+const mergedGeometry = new THREE.Geometry()
+const pointGeometry = new THREE.SphereGeometry(0.8, 8, 8)
+const pointMaterial = new THREE.MeshBasicMaterial({
+  color: "#fff",
+  // opacity: 0,
+  transparent: true
+})
+
+const coloredMergedGeometry = new THREE.Geometry()
+const coloredPointGeometry = new THREE.SphereGeometry(1, 8, 8)
+const coloredPointMaterial = new THREE.MeshBasicMaterial({
+  // opacity: 0.7,
+  // opacity: 0,
+  color: "#00A55F",
+  transparent: true
+})
+
+const sphereGeometry = new THREE.SphereGeometry(200, 128, 128)
+const sphereMaterial = new THREE.MeshBasicMaterial({
+  color: "#ccc",
+  transparent: true
+})
+
 export default function Globe() {
   const ref = useRef(null)
-  const globeRadius = 200
-  const globeWidth = 4098 / 2
-  const globeHeight = 1968 / 2
-  const mergedGeometry = new THREE.Geometry()
-  const pointGeometry = new THREE.SphereGeometry(0.8, 8, 8)
-  const pointMaterial = new THREE.MeshBasicMaterial({
-    color: "#fff",
-    // opacity: 0,
-    transparent: true
-  })
-
-  const coloredMergedGeometry = new THREE.Geometry()
-  const coloredPointGeometry = new THREE.SphereGeometry(1, 8, 8)
-  const coloredPointMaterial = new THREE.MeshBasicMaterial({
-    // opacity: 0.7,
-    // opacity: 0,
-    color: "#00A55F",
-    transparent: true
-  })
-
-  const sphereGeometry = new THREE.SphereGeometry(200, 128, 128)
-  const sphereMaterial = new THREE.MeshBasicMaterial({
-    color: "#ccc",
-    transparent: true
-  })
+  const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
+    if (isInitialized) return
+    setIsInitialized(true)
     const { canvas, scene, camera, renderer } = useWebGL() // eslint-disable-line
 
     gsap.from([sphereMaterial, pointMaterial, coloredPointMaterial], {
       opacity: 0,
-      duration: 1, ease: 'expo.out',
+      duration: 1,
+      ease: "expo.out",
       stagger: 0.25,
       delay: 1
     })
@@ -101,18 +106,7 @@ export default function Globe() {
     }
 
     animate()
-  }, [
-    mergedGeometry,
-    pointGeometry,
-    pointMaterial,
-    globeHeight,
-    globeWidth,
-    sphereGeometry,
-    sphereMaterial,
-    coloredPointGeometry,
-    coloredPointMaterial,
-    coloredMergedGeometry
-  ])
+  }, [isInitialized])
 
   return (
     <div
