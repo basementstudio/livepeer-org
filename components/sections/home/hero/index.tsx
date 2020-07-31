@@ -1,13 +1,14 @@
 /** @jsx jsx */
 import { jsx, Container, Heading, Text, Box, Link as A } from "theme-ui"
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import gsap, { Power1 } from "gsap"
 import Globe from "./globe"
-import VideoSwapper from "./video-swapper"
+import VideoSwapper from "./video-swapper.js"
 import GlobeDot from "./globe-dots"
 import Divider from "components/primitives/divider"
 
 const HomeHero = () => {
+  const [globeDotIndex, setGlobeDotIndex] = useState(0)
   const animationTimeline = useRef()
   const videoBoxRef = useRef()
   const globeRef = useRef()
@@ -20,6 +21,11 @@ const HomeHero = () => {
     "/hero-videos/4-final.mp4",
     "/hero-videos/5-final.mp4"
   ]
+
+  const onVideoChange = () => {
+    console.log('onCHange')
+    setGlobeDotIndex(Math.round(Math.random() * 7))
+  }
 
   useEffect(() => {
     // @ts-ignore
@@ -140,50 +146,50 @@ const HomeHero = () => {
           </div>
           <div ref={dotsRef}>
             <GlobeDot
-              pulsating={false}
+              pulsating={globeDotIndex === 0}
               image="/images/hero/avatar-1.png"
               left="35%"
               top="15%"
             />
             <GlobeDot
-              pulsating={false}
+              pulsating={globeDotIndex === 1}
               image="/images/hero/avatar-eth.png"
               left="26%"
               top="35%"
             />
             <GlobeDot
-              pulsating={false}
+              pulsating={globeDotIndex === 2}
               image="/images/hero/avatar-livepeer.png"
               left="28%"
               top="68%"
             />
             <GlobeDot
-              pulsating={false}
+              pulsating={globeDotIndex === 3}
               image="/images/hero/avatar-2.png"
               left="32%"
               top="50%"
             />
 
             <GlobeDot
-              pulsating={false}
+              pulsating={globeDotIndex === 4}
               image="/images/hero/avatar-3.png"
               left="67%"
               top="62%"
             />
             <GlobeDot
-              pulsating={false}
+              pulsating={globeDotIndex === 5}
               image="/images/hero/avatar-4.png"
               left="60%"
               top="30%"
             />
             <GlobeDot
-              pulsating={true}
+              pulsating={globeDotIndex === 6}
               image="/images/hero/avatar-livepeer.png"
               left="65%"
               top="22%"
             />
             <GlobeDot
-              pulsating={false}
+              pulsating={globeDotIndex === 7}
               image="/images/hero/avatar-eth.png"
               left="75%"
               top="70%"
@@ -199,7 +205,7 @@ const HomeHero = () => {
             }}
             ref={videoBoxRef}
           >
-            <VideoSwapper sources={videos} />
+            <VideoSwapper sources={videos} onChange={onVideoChange} />
           </div>
         </Box>
       </Container>

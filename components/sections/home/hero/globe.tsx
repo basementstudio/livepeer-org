@@ -13,23 +13,35 @@ export default function Globe() {
   const mergedGeometry = new THREE.Geometry()
   const pointGeometry = new THREE.SphereGeometry(0.8, 8, 8)
   const pointMaterial = new THREE.MeshBasicMaterial({
-    color: "#fff"
+    color: "#fff",
+    // opacity: 0,
+    transparent: true
   })
 
   const coloredMergedGeometry = new THREE.Geometry()
   const coloredPointGeometry = new THREE.SphereGeometry(1, 8, 8)
   const coloredPointMaterial = new THREE.MeshBasicMaterial({
-    opacity: 0.7,
-    color: "#00A55F"
+    // opacity: 0.7,
+    // opacity: 0,
+    color: "#00A55F",
+    transparent: true
   })
 
   const sphereGeometry = new THREE.SphereGeometry(200, 128, 128)
   const sphereMaterial = new THREE.MeshBasicMaterial({
-    color: "#ccc"
+    color: "#ccc",
+    transparent: true
   })
 
   useEffect(() => {
     const { canvas, scene, camera, renderer } = useWebGL() // eslint-disable-line
+
+    gsap.from([sphereMaterial, pointMaterial, coloredPointMaterial], {
+      opacity: 0,
+      duration: 1, ease: 'expo.out',
+      stagger: 0.25,
+      delay: 1
+    })
 
     const convertFlatCoordsToSphereCoords = (x, y) => {
       let latitude = ((x - globeWidth) / globeWidth) * -180
