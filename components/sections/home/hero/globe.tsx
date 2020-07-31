@@ -108,6 +108,7 @@ export default function Globe() {
       style={{
         width: "100vw",
         position: "absolute",
+        pointerEvents: "none",
         top: 0,
         left: 0,
         zIndex: 0

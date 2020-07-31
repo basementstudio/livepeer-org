@@ -1,20 +1,18 @@
 /** @jsx jsx */
 import { jsx, Container, Heading, Text, Box, Link as A } from "theme-ui"
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect } from "react"
 import gsap, { Power1 } from "gsap"
-import useEventBus from "effects/globe/hooks/use-events"
 import Globe from "./globe"
+import VideoSwapper from "./video-swapper"
 import GlobeDot from "./globe-dots"
 import Divider from "components/primitives/divider"
 
 const HomeHero = () => {
   const animationTimeline = useRef()
-  const [videoSource, setVideoSource] = useState(0)
+  const videoBoxRef = useRef()
   const globeRef = useRef()
   const dotsRef = useRef()
-  const liveDotRef = useRef()
-  const videoRef = useRef()
-  const videoBoxRef = useRef()
+
   const videos = [
     "/hero-videos/1-final.mp4",
     "/hero-videos/2-final.mp4",
@@ -22,22 +20,6 @@ const HomeHero = () => {
     "/hero-videos/4-final.mp4",
     "/hero-videos/5-final.mp4"
   ]
-  useEffect(() => {
-    //@ts-ignore
-    videoRef.current.addEventListener(
-      "ended",
-      () => {
-        const newSource = videoSource + 1
-
-        if (newSource === videos.length) {
-          setVideoSource(0)
-        } else {
-          setVideoSource(newSource)
-        }
-      },
-      false
-    )
-  })
 
   useEffect(() => {
     // @ts-ignore
@@ -158,7 +140,7 @@ const HomeHero = () => {
           </div>
           <div ref={dotsRef}>
             <GlobeDot
-              pulsating={videoSource === 0}
+              pulsating={false}
               image="/images/hero/avatar-1.png"
               left="35%"
               top="15%"
@@ -176,26 +158,26 @@ const HomeHero = () => {
               top="68%"
             />
             <GlobeDot
-              pulsating={videoSource === 1}
+              pulsating={false}
               image="/images/hero/avatar-2.png"
               left="32%"
               top="50%"
             />
 
             <GlobeDot
-              pulsating={videoSource === 2}
+              pulsating={false}
               image="/images/hero/avatar-3.png"
               left="67%"
               top="62%"
             />
             <GlobeDot
-              pulsating={videoSource === 3}
+              pulsating={false}
               image="/images/hero/avatar-4.png"
               left="60%"
               top="30%"
             />
             <GlobeDot
-              pulsating={videoSource === 4}
+              pulsating={true}
               image="/images/hero/avatar-livepeer.png"
               left="65%"
               top="22%"
@@ -217,49 +199,7 @@ const HomeHero = () => {
             }}
             ref={videoBoxRef}
           >
-            <span
-              sx={{
-                position: "absolute",
-                left: "20px",
-                top: "10px",
-                zIndex: "101"
-              }}
-            >
-              <p
-                sx={{
-                  position: "relative",
-                  paddingLeft: "10px",
-                  fontSize: "12px",
-                  textShadow: "0 0 2px #fff"
-                }}
-              >
-                <span
-                  ref={liveDotRef}
-                  sx={{
-                    width: "5px",
-                    height: "5px",
-                    backgroundColor: "red",
-                    borderRadius: "50%",
-                    position: "absolute",
-                    left: "0",
-                    top: "50%",
-                    transform: "translateY(-50%)"
-                  }}
-                />
-                Live
-              </p>
-            </span>
-            <video
-              sx={{
-                borderRadius: "8px",
-                width: "25vw"
-              }}
-              ref={videoRef}
-              src={videos[videoSource]}
-              autoPlay
-              muted
-              playsInline
-            />
+            <VideoSwapper sources={videos} />
           </div>
         </Box>
       </Container>
