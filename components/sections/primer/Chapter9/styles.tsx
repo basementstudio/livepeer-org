@@ -110,6 +110,7 @@ export const Button = styled.a({
   padding: "6px 24px",
   textTransform: "uppercase",
   color: "#000000",
+  marginTop: 32,
   textDecoration: "none",
   transition: "background .3s",
   "&:hover": {

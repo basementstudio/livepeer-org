@@ -1,15 +1,8 @@
 import styled from "@emotion/styled"
 
 export const Root = styled.div({
-  position: "fixed",
-  top: 24,
   height: "50px",
-  right: 24,
-  zIndex: 100,
-  ["@media (min-width: 1024px)"]: {
-    top: 36,
-    right: 36
-  }
+  zIndex: 100
 })
 
 export const Inner = styled.div((props: any) => ({
@@ -124,10 +117,9 @@ export const ButtonText = styled.div({
   textTransform: "uppercase",
   lineHeight: "19px",
   fontSize: 16,
-  fontFamily: "gt_america_mono_light",
+  fontFamily: "Roboto Mono",
   marginRight: 16,
-  position: "relative",
-  top: "2px"
+  position: "relative"
 })
 
 export const Circle = styled.div({

@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { Container, Section, Title, Orchestration } from "./styles"
@@ -18,7 +20,7 @@ const Chapter4 = ({ onChange }) => {
       <Title>Orchestrators</Title>
       <Section>
         <div
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               max-width: 570px;
@@ -40,7 +42,7 @@ const Chapter4 = ({ onChange }) => {
         </div>
         <Orchestration src="/images/primer/orchestration.svg" />
         <div
-          css={`
+          css={css`
             @media (min-width: 1024px) {
               max-width: 570px;
             }

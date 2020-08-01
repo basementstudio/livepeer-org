@@ -13,11 +13,6 @@ import {
 
 const Menu = () => {
   const [active, setActiveState] = useState(false)
-
-  Events.scrollEvent.register("begin", function (to, element) {
-    console.log("begin", element)
-    console.log("begin", to)
-  })
   return (
     <Root>
       <Inner isActive={active}>

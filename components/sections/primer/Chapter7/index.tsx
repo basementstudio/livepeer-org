@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { Container, Section1, Section2, Section3, Title, Fees } from "./styles"
 import Rewards from "../Rewards"
 
@@ -7,7 +9,7 @@ const Chapter7 = ({ data }) => {
       <Title>Rewarding Participation</Title>
       <Section1>
         <div
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               max-width: 330px;
@@ -26,7 +28,7 @@ const Chapter7 = ({ data }) => {
       </Section1>
       <Section2>
         <div
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               position: relative;
@@ -63,7 +65,7 @@ const Chapter7 = ({ data }) => {
       </Section2>
       <Section3>
         <p
-          css={`
+          css={css`
             max-width: 370px;
             textalign: center;
           `}

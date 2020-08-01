@@ -1,7 +1,10 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
+
 const Rewards = ({ data }) => {
   return (
     <svg
-      css={`
+      css={css`
         transform: scale(2.5) translateX(-42px);
         padding: 220px 0;
         @media (min-width: 1024px) {

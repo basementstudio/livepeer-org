@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Box } from "theme-ui"
 import { Element } from "react-scroll"
-import Head from "next/head"
-import Link from "next/link"
-import LivepeerLogo from "components/svgs/livepeer-logo"
+import PageLayout from "components/layouts/primer"
+import { HeadProps } from "components/primitives/head"
+import { request } from "graphql-request"
 
 // TODO: refactor primer components to use theme-ui
 import Masthead from "components/sections/primer/Masthead"
-import Menu from "components/sections/primer/Menu"
 import Introduction from "components/sections/primer/Introduction"
 import Chapter1 from "components/sections/primer/Chapter1"
 import Chapter2 from "components/sections/primer/Chapter2"
@@ -20,144 +19,146 @@ import Chapter8 from "components/sections/primer/Chapter8"
 import Chapter9 from "components/sections/primer/Chapter9"
 import Footer from "components/sections/primer/Footer"
 
-const Primer = () => {
+const headProps: HeadProps = {
+  meta: {
+    title: "Livepeer - A 10-Minute Primer",
+    description:
+      "Through storytelling, illustration, and data, the Livepeer Primer explains, at a high level, the problem Livepeer solves, and how it works.",
+    url: "https://livepeer.org/primer",
+    siteName: "Livepeer.org",
+    image: "https://livepeer.org/images/primer/share-image.jpg",
+    twitterUsername: "@LivepeerOrg"
+  }
+}
+
+const Primer = ({ data }) => {
   const [section, setActiveSection] = useState("introduction")
   const onChange = (section) => {
     setActiveSection(section)
   }
-  const [data, setData] = useState({
-    totalDelegators: 0,
-    totalSupply: 0,
-    inflationPerRound: 0,
-    totalBonded: 0,
-    participationRate: 0,
-    blockTime: 0
-  })
 
-  useEffect(() => {
-    async function fetchData() {
-      let response = await fetch("https://livepeer-stats.now.sh")
-      let { data } = await response.json()
-      console.log(data)
-      setData({
-        totalDelegators: 0,
-        totalSupply: 0,
-        inflationPerRound: 0,
-        totalBonded: 0,
-        participationRate: 0,
-        blockTime: 0
-      })
-    }
-
-    fetchData()
-  }, [Math.floor(Date.now() / 60000)])
   return (
-    <Box className="primer">
-      <Head>
-        <meta charSet="UTF-8" />
-        <title>Livepeer - A 10-Minute Primer</title>
-        <meta
-          name="description"
-          content="Through storytelling, illustration, and data, the Livepeer Primer explains, at a high level, the problem Livepeer solves, and how it works."
-        />
-
-        {/* <!-- Search Engine --> */}
-        <meta
-          name="description"
-          content="Through storytelling, illustration, and data, the Livepeer Primer explains, at a high level, the problem Livepeer solves, and how it works."
-        />
-        <meta
-          name="image"
-          content="https://livepeer.org/img/primer/share-image.jpg"
-        />
-        {/* <!-- Schema.org for Google --> */}
-        <meta itemProp="name" content="Livepeer - A 10-Minute Primer" />
-        <meta
-          itemProp="description"
-          content="Through storytelling, illustration, and data, the Livepeer Primer explains, at a high level, the problem Livepeer solves, and how it works."
-        />
-        <meta
-          itemProp="image"
-          content="https://livepeer.org/images/primer/share-image.jpg"
-        />
-        {/* <!-- Twitter --> */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Livepeer - A 10-Minute Primer" />
-        <meta
-          name="twitter:description"
-          content="Through storytelling, illustration, and data, the Livepeer Primer explains, at a high level, the problem Livepeer solves, and how it works."
-        />
-        <meta name="twitter:site" content="@livepeerorg" />
-        <meta name="twitter:creator" content="@livepeerorg" />
-        <meta
-          name="twitter:image:src"
-          content="https://livepeer.org/images/primer/share-image.jpg"
-        />
-        {/* <!-- Open Graph general (Facebook, Pinterest) --> */}
-        <meta name="og:title" content="Livepeer - A 10-Minute Primer" />
-        <meta
-          name="og:description"
-          content="Through storytelling, illustration, and data, the Livepeer Primer explains, at a high level, the problem Livepeer solves, and how it works."
-        />
-        <meta
-          name="og:image"
-          content="https://livepeer.org/images/primer/share-image.jpg"
-        />
-        <meta name="og:url" content="https://livepeer.org/primer" />
-        <meta name="og:site_name" content="Livepeer Primer" />
-        <meta name="og:type" content="website" />
-
-        <link rel="stylesheet" href="/primer.css" />
-      </Head>
-      <Menu />
-      <Box className={`bg ${section}`} />
-      <Element name="top" />
-      <Box id="containerElement" style={{ position: "relative", zIndex: 10 }}>
-        <Link href="/" passHref>
-          <LivepeerLogo
-            sx={{
-              position: "absolute",
-              left: ["24px", "40px", "40px"],
-              top: ["28px", "28px", "36px"],
-              width: "140px"
-            }}
-          />
-        </Link>
-        <Masthead />
-        <Element name="introduction">
-          <Introduction onChange={() => onChange("introduction")} />
-        </Element>
-        <Element name="chapter1">
-          <Chapter1 onChange={() => onChange("chapter1")} />
-        </Element>
-        <Element name="chapter2">
-          <Chapter2 />
-        </Element>
-        <Element name="chapter3">
-          <Chapter3 onChange={() => onChange("chapter3")} />
-        </Element>
-        <Element name="chapter4">
-          <Chapter4 onChange={() => onChange("chapter4")} />
-        </Element>
-        <Element name="chapter5">
-          <Chapter5 onChange={() => onChange("chapter5")} />
-        </Element>
-        <Element name="chapter6">
-          <Chapter6 />
-        </Element>
-        <Element name="chapter7">
-          <Chapter7 data={data} />
-        </Element>
-        <Element name="chapter8">
-          <Chapter8 data={data} onChange={() => onChange("chapter8")} />
-        </Element>
-        <Element name="chapter9">
-          <Chapter9 data={data} onChange={() => onChange("chapter9")} />
-        </Element>
-        <Footer />
+    <PageLayout
+      navProps={{ background: "translucent", isInmersive: true }}
+      headProps={headProps}
+    >
+      <Box className="primer">
+        <Box className={`bg ${section}`} />
+        <Element name="top" />
+        <Box id="containerElement" style={{ position: "relative", zIndex: 10 }}>
+          <Masthead />
+          <Element name="introduction">
+            <Introduction onChange={() => onChange("introduction")} />
+          </Element>
+          <Element name="chapter1">
+            <Chapter1 onChange={() => onChange("chapter1")} />
+          </Element>
+          <Element name="chapter2">
+            <Chapter2 />
+          </Element>
+          <Element name="chapter3">
+            <Chapter3 onChange={() => onChange("chapter3")} />
+          </Element>
+          <Element name="chapter4">
+            <Chapter4 onChange={() => onChange("chapter4")} />
+          </Element>
+          <Element name="chapter5">
+            <Chapter5 onChange={() => onChange("chapter5")} />
+          </Element>
+          <Element name="chapter6">
+            <Chapter6 />
+          </Element>
+          <Element name="chapter7">
+            <Chapter7 data={data} />
+          </Element>
+          <Element name="chapter8">
+            <Chapter8 data={data} onChange={() => onChange("chapter8")} />
+          </Element>
+          <Element name="chapter9">
+            <Chapter9 data={data} onChange={() => onChange("chapter9")} />
+          </Element>
+          <Footer />
+        </Box>
       </Box>
-    </Box>
+    </PageLayout>
   )
+}
+
+export async function getStaticProps() {
+  const reqDelegators = async (skip) => {
+    const query = `query delegators ($first: Int $skip: Int $where: Delegator_filter) {
+          delegators(first: $first skip: $skip where: $where) {
+              id
+            }
+        }`
+    let response = await request(
+      "https://api.thegraph.com/subgraphs/name/livepeer/livepeer",
+      query,
+      {
+        skip: skip,
+        first: 1000,
+        where: {
+          bondedAmount_gt: "0"
+        }
+      }
+    )
+    return response.delegators
+  }
+  const getDelegators = async () => {
+    const PAGE_SIZE = 1000
+    let delegators = []
+    let keepGoing = true
+    let skip = 0
+    while (keepGoing) {
+      let response = await reqDelegators(skip)
+      await delegators.push.apply(delegators, response)
+      skip += PAGE_SIZE
+      if (response.length < PAGE_SIZE) {
+        keepGoing = false
+        return delegators
+      }
+    }
+  }
+  let delegators = await getDelegators()
+
+  let totalSupplyResponse = await fetch(
+    "https://scout.cool/supermax/api/v2/charts/preview/livepeer/mainnet/5bc630c60a7b0ea5ffae004d"
+  )
+  let totalSupplyResult = await totalSupplyResponse.json()
+
+  let inflationPerRoundResponse = await fetch(
+    "https://scout.cool/supermax/api/v2/charts/preview/livepeer/mainnet/5c35522c869d0d001761784b"
+  )
+  let inflationPerRoundResult = await inflationPerRoundResponse.json()
+
+  let participationRateResponse = await fetch(
+    "https://scout.cool/supermax/api/v2/charts/preview/livepeer/mainnet/5c35f206a9c1841fb7d4a9ad"
+  )
+  let participationRateResult = await participationRateResponse.json()
+
+  let totalBondedResponse = await fetch(
+    "https://scout.cool/supermax/api/v2/charts/preview/livepeer/mainnet/5bc62d260a7b0ea5ffae004c"
+  )
+  let totalBondedResult = await totalBondedResponse.json()
+
+  let ethGasStationResponse = await fetch(
+    "https://ethgasstation.info/json/ethgasAPI.json"
+  )
+  let ethGasStationResult = await ethGasStationResponse.json()
+
+  return {
+    props: {
+      data: {
+        totalSupply: totalSupplyResult.data.rows[0][1],
+        totalDelegators: delegators.length,
+        inflationPerRound: inflationPerRoundResult.data.rows[0][1],
+        totalBonded: totalBondedResult.data.rows[0][1],
+        participationRate: participationRateResult.data.rows[0][1],
+        blockTime: ethGasStationResult.block_time
+      }
+    },
+    revalidate: 1
+  }
 }
 
 export default Primer

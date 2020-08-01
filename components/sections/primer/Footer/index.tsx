@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { Link } from "react-scroll"
 
 const Footer = () => {
   return (
     <div
-      css={`
+      css={css`
         padding: 40px 24px;
         display: flex;
         justify-content: space-between;
@@ -25,7 +27,7 @@ const Footer = () => {
         duration={500}
       >
         <div
-          css={`
+          css={css`
             display: flex;
             align-items: center;
             cursor: pointer;

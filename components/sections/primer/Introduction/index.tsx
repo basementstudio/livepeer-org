@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react"
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
+import { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import {
   Container,
@@ -32,7 +34,7 @@ const Introduction = ({ onChange }) => {
         <Section1>
           <PieChart src="/images/primer/pie-chart.svg" />
           <div
-            css={`
+            css={css`
               margin-bottom: 40px;
               @media (min-width: 1024px) {
                 margin-bottom: 0;
@@ -51,7 +53,7 @@ const Introduction = ({ onChange }) => {
         </Section1>
         <Section2>
           <div
-            css={`
+            css={css`
               margin-bottom: 40px;
               @media (min-width: 1024px) {
                 min-width: 340px;
@@ -74,7 +76,7 @@ const Introduction = ({ onChange }) => {
         <Section3>
           <TranscodingOut src="/images/primer/transcoder-pickup.svg" />
           <div
-            css={`
+            css={css`
               @media (min-width: 1024px) {
                 margin-top: 0;
                 max-width: 330px;
@@ -93,7 +95,7 @@ const Introduction = ({ onChange }) => {
         </Section3>
         <Section4>
           <div
-            css={`
+            css={css`
               @media (min-width: 1024px) {
                 max-width: 420px;
                 margin-top: 136px;
@@ -112,7 +114,7 @@ const Introduction = ({ onChange }) => {
         <Section5>
           <Scissors src="/images/primer/scissors.svg" />
           <div
-            css={`
+            css={css`
               margin-bottom: 40px;
               @media (min-width: 1024px) {
                 margin-top: 80px;

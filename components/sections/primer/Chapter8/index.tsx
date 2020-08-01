@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react"
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
+import { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import {
   Container,
@@ -29,7 +31,7 @@ const Chapter8 = ({ data, onChange }) => {
       <MobileTitle>Rounds & Inflation</MobileTitle>
       <Section1>
         <div
-          css={`
+          css={css`
             @media (min-width: 1024px) {
               max-width: 500px;
             }
@@ -38,7 +40,7 @@ const Chapter8 = ({ data, onChange }) => {
           <Title>Rounds & Inflation</Title>
           <Heading>Rounds</Heading>
           <p
-            css={`
+            css={css`
               @media (min-width: 1024px) {
                 margin-bottom: 40px;
               }
@@ -64,7 +66,7 @@ const Chapter8 = ({ data, onChange }) => {
       </Section1>
       <Section2>
         <div
-          css={`
+          css={css`
             @media (min-width: 1024px) {
               margin-right: 120px;
             }
@@ -73,7 +75,7 @@ const Chapter8 = ({ data, onChange }) => {
           <Gauge data={data} />
         </div>
         <div
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               max-width: 500px;
@@ -112,7 +114,7 @@ const Chapter8 = ({ data, onChange }) => {
       </Section2>
       <Section3>
         <p
-          css={`
+          css={css`
             @media (min-width: 1024px) {
               max-width: 470px;
               text-align: center;

@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { Container, Inflation } from "./styles"
 
 const Gauge = ({ data }) => {
@@ -118,7 +120,7 @@ const Gauge = ({ data }) => {
         </g>
       </svg>
       <div
-        css={`
+        css={css`
           margin: 16px 0 32px;
           font-weight: bold;
         `}
@@ -127,7 +129,7 @@ const Gauge = ({ data }) => {
       </div>
       <Inflation>
         <span
-          css={`
+          css={css`
             font-family: Monaco;
             font-weight: normal;
           `}

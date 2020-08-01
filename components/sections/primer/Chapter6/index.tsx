@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { Container, Section, Title, MobileTitle, Staking } from "./styles"
 
 const Chapter6 = () => {
@@ -7,7 +9,7 @@ const Chapter6 = () => {
       <Section>
         <Staking src="/images/primer/staking.svg" />
         <div
-          css={`
+          css={css`
             @media (min-width: 1024px) {
               max-width: 440px;
             }
@@ -15,7 +17,7 @@ const Chapter6 = () => {
         >
           <Title>Delegators</Title>
           <p
-            css={`
+            css={css`
               margin-bottom: 56px;
               @media (min-width: 1024px) {
                 margin-bottom: 80px;
@@ -31,7 +33,7 @@ const Chapter6 = () => {
             more secure.
           </p>
           <p
-            css={`
+            css={css`
               font-size: 28px;
               line-height: 38px;
             `}

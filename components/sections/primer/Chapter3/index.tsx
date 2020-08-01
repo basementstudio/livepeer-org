@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import {
@@ -30,7 +32,7 @@ const Chapter3 = ({ onChange }) => {
     <Container ref={ref}>
       <Title>How Does Livepeer Work?</Title>
       <Section1
-        css={`
+        css={css`
           margin-bottom: 40px;
           @media (min-width: 1024px) {
             margin-bottom: 24px;
@@ -39,7 +41,7 @@ const Chapter3 = ({ onChange }) => {
       >
         <Alice src="/images/primer/alice.svg" />
         <Body
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               margin-bottom: 0;
@@ -56,7 +58,7 @@ const Chapter3 = ({ onChange }) => {
       </Section1>
       <Section2>
         <Body
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               margin-right: 160px;
@@ -75,7 +77,7 @@ const Chapter3 = ({ onChange }) => {
       <Section3>
         <Devices src="/images/primer/devices.svg" />
         <Body
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               margin-bottom: 0;
@@ -98,7 +100,7 @@ const Chapter3 = ({ onChange }) => {
       </Section3>
       <Section4>
         <Body
-          css={`
+          css={css`
             margin-bottom: 40px;
             @media (min-width: 1024px) {
               margin-right: 80px;

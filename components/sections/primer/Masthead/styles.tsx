@@ -23,7 +23,7 @@ export const Container = styled.div({
   ["@media (min-width: 1024px)"]: {
     margin: "0 auto",
     justifyContent: "center",
-    height: "100vh",
+    height: "calc(100vh - 116px )",
     padding: 0
   }
 })
@@ -44,7 +44,7 @@ export const Subheading = styled.h2({
   fontWeight: 100,
   marginBottom: 16,
   textTransform: "uppercase",
-  fontFamily: "gt_america_mono_light !important"
+  fontFamily: "Roboto Mono !important"
 })
 
 const scrollPrompt = keyframes`

@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { Root, Container, Section, Title } from "./styles"
@@ -19,7 +21,7 @@ const Chapter5 = ({ onChange }) => {
         <Title>Livepeer Tokens</Title>
         <Section>
           <div
-            css={`
+            css={css`
               @media (min-width: 1024px) {
                 max-width: 472px;
                 margin-bottom: 80px;

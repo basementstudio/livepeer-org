@@ -1,5 +1,8 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
+import Link from "next/link"
 
 import {
   Container,
@@ -7,7 +10,6 @@ import {
   Heading,
   Button,
   Title,
-  Text,
   List,
   Header,
   Item,
@@ -31,7 +33,7 @@ const Chapter9 = ({ onChange, data }) => {
       <Title>Livepeer is Growing!</Title>
       <Section>
         <div
-          css={`
+          css={css`
             @media (min-width: 1024px) {
               max-width: 330px;
               margin-right: 80px;
@@ -55,14 +57,9 @@ const Chapter9 = ({ onChange, data }) => {
             </Header>
             <Heading>Interested in participating?</Heading>
             <p>Get Livepeer token</p>
-            <Button
-              style={{ marginBottom: 32 }}
-              href="https://poloniex.com/exchange"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Get Token
-            </Button>
+            <Link href="/resources?filter=exchange#tabs" passHref>
+              <Button style={{ marginBottom: 32 }}>Get Token</Button>
+            </Link>
             <p>Stake token towards an Orchestrator</p>
             <Button
               href="https://explorer.livepeer.org/"
@@ -96,13 +93,9 @@ const Chapter9 = ({ onChange, data }) => {
               marketplace by renting out the idle capacity on your GPU mining
               rig.
             </p>
-            <Button
-              href="https://medium.com/livepeer-blog/the-video-miner-a-path-to-scaling-video-transcoding-a3487d232a1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn More
-            </Button>
+            <Link href="/video-miners" passHref>
+              <Button>Learn More</Button>
+            </Link>
           </Item>
         </List>
       </Section>
