@@ -202,7 +202,8 @@ const Nav = ({
                 sx={{
                   top: [hasScrolled ? 12 : 48, 0],
                   right: [16, 0],
-                  position: ["fixed", "initial"]
+                  position: ["fixed", "initial"],
+                  pointerEvents: "none"
                 }}
               >
                 <Menu />
@@ -213,7 +214,7 @@ const Nav = ({
             <IconButton
               sx={{
                 color,
-                display: ["block", null, "none"],
+                display: ["block", "block", "none"],
                 fontSize: 6
               }}
               onClick={() => setMobileMenuIsOpen(true)}
