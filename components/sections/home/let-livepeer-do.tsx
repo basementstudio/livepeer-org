@@ -39,7 +39,7 @@ const LetLivepeerDoSection = () => (
     subtitle="Jump in by choosing the option that best describes your interest:"
     id="get-started"
     background="muted"
-    pushSx={{ paddingTop: "8vw" }}
+    pushSx={{ paddingTop: ["20vw", "8vw"] }}
   >
     <Grid
       gap={4}

@@ -172,8 +172,8 @@ const HomeHero = () => {
             <GlobeDot
               pulsating={globeDotIndex === 2 || globeDotIndex === 7}
               image="/images/hero/avatar-2.png"
-              left="32%"
-              top={["37%", "50%"]}
+              left={["35%", "32%"]}
+              top={["45%", "50%"]}
             />
 
             <GlobeDot
@@ -206,7 +206,7 @@ const HomeHero = () => {
             sx={{
               position: "absolute",
               left: "50%",
-              bottom: ["-3%", "-10%"],
+              bottom: "-12%",
               transform: "translateX(-50%)",
               zIndex: "100",
               borderRadius: "8px",
