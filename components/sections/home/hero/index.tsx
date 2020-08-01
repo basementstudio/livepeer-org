@@ -3,7 +3,7 @@ import { jsx, Container, Heading, Text, Box, Link as A } from "theme-ui"
 import { useRef, useEffect, useState } from "react"
 import gsap, { Power1 } from "gsap"
 import Globe from "./globe"
-import VideoSwapper from "./video-swapper.js"
+import VideoSwapper from "./video-swapper"
 import GlobeDot from "./globe-dots"
 import Divider from "components/primitives/divider"
 
@@ -11,7 +11,6 @@ const HomeHero = () => {
   const [globeDotIndex, setGlobeDotIndex] = useState(0)
   const animationTimeline = useRef()
   const videoBoxRef = useRef()
-  const globeRef = useRef()
   const dotsRef = useRef()
 
   const videos = [
@@ -33,6 +32,7 @@ const HomeHero = () => {
     // @ts-ignore
     animationTimeline.current = gsap.timeline({
       defaults: {
+        delay: 1,
         duration: 0.2,
         ease: Power1.easeOut,
         autoAlpha: 1
@@ -42,19 +42,25 @@ const HomeHero = () => {
     // @ts-ignore
     animationTimeline.current.to(
       // @ts-ignore
-      globeRef.current,
+      dotsRef.current.getElementsByClassName("highlight-dot"),
       {
-        opacity: 1
+        duration: 1,
+        opacity: 1,
+        stagger: {
+          each: 0.2,
+          from: "center",
+          grid: "auto"
+        }
       }
     )
 
-    // @ts-ignore
+    //@ts-ignore
     animationTimeline.current.to(
-      // @ts-ignore
-      dotsRef.current.getElementsByClassName("highlight-dot"),
+      videoBoxRef.current,
       {
         opacity: 1
-      }
+      },
+      "-=1"
     )
 
     // @ts-ignore
@@ -143,9 +149,7 @@ const HomeHero = () => {
           Get started
         </A>
         <Box sx={{ position: "relative", width: "100vw", height: "100%" }}>
-          <div ref={globeRef}>
-            <Globe />
-          </div>
+          <Globe />
           <div ref={dotsRef}>
             <GlobeDot
               pulsating={globeDotIndex === 0 || globeDotIndex === 5}
@@ -198,14 +202,15 @@ const HomeHero = () => {
             />
           </div>
           <div
+            ref={videoBoxRef}
             sx={{
               position: "absolute",
               left: "50%",
               bottom: ["-3%", "-10%"],
               transform: "translateX(-50%)",
-              zIndex: "100"
+              zIndex: "100",
+              opacity: 0
             }}
-            ref={videoBoxRef}
           >
             <VideoSwapper sources={videos} onChange={onVideoChange} />
           </div>

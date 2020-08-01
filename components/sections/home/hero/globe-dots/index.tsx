@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import styles from "./globe-dots.module.css"
 import { useEffect, useRef } from "react"
 import gsap, { Linear } from "gsap"
 
-const globeDots = ({ top, left, image, pulsating }) => {
+import styles from "./globe-dots.module.css"
+
+const GlobeDots = ({ top, left, image, pulsating }) => {
   const pulseRef = useRef()
 
   useEffect(() => {
@@ -74,4 +75,4 @@ const globeDots = ({ top, left, image, pulsating }) => {
   )
 }
 
-export default globeDots
+export default GlobeDots

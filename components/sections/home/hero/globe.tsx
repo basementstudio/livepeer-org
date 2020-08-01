@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as THREE from "three"
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
@@ -108,7 +110,7 @@ export default function Globe() {
   return (
     <div
       ref={ref}
-      style={{
+      sx={{
         width: "100vw",
         position: "absolute",
         pointerEvents: "none",
