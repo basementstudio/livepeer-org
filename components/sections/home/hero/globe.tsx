@@ -24,7 +24,7 @@ const coloredPointMaterial = new THREE.MeshBasicMaterial({
   transparent: true
 })
 
-const sphereGeometry = new THREE.SphereGeometry(200, 128, 128)
+const sphereGeometry = new THREE.SphereGeometry(200, 64, 64)
 const sphereMaterial = new THREE.MeshBasicMaterial({
   color: "#ccc",
   transparent: true
