@@ -48,7 +48,6 @@ const Head = ({ meta = {} }: HeadProps) => {
       <meta name="twitter:title" content={meta.title} />
       <meta name="twitter:site" content={meta.twitterUsername} />
       <meta name="twitter:image" content={`${meta.image}`} />
-      <link rel="stylesheet" href="/primer.css" />
     </NextHead>
   )
 }
