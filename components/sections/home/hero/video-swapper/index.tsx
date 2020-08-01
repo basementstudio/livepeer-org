@@ -48,8 +48,7 @@ const VideoSwapper = ({ sources, onChange }) => {
     <div
       sx={{
         position: "relative",
-        borderRadius: "8px",
-        overflow: "hidden",
+
         width: ["60vw", "25vw"],
         height: ["33vw", "14vw"]
       }}

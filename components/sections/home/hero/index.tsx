@@ -173,20 +173,20 @@ const HomeHero = () => {
               pulsating={globeDotIndex === 2 || globeDotIndex === 7}
               image="/images/hero/avatar-2.png"
               left="32%"
-              top="50%"
+              top={["37%", "50%"]}
             />
 
             <GlobeDot
               pulsating={globeDotIndex === 4 || globeDotIndex === 1}
               image="/images/hero/avatar-3.png"
               left={["70%", "67%"]}
-              top={["45%", "62%"]}
+              top={["40%", "62%"]}
             />
             <GlobeDot
               pulsating={globeDotIndex === 6 || globeDotIndex === 3}
               image="/images/hero/avatar-4.png"
               left={["50%", "60%"]}
-              top={["25%", "30%"]}
+              top={["15%", "30%"]}
             />
             <GlobeDot
               pulsating={false}
@@ -209,6 +209,8 @@ const HomeHero = () => {
               bottom: ["-3%", "-10%"],
               transform: "translateX(-50%)",
               zIndex: "100",
+              borderRadius: "8px",
+              overflow: "hidden",
               opacity: 0
             }}
           >
