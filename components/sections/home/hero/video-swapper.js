@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import { useRef, useState, useCallback, useEffect } from "react"
 
 const VideoSwapper = ({ sources, onChange }) => {
@@ -12,7 +14,7 @@ const VideoSwapper = ({ sources, onChange }) => {
       }}
       key={i.toString()}
       ref={(el) => (videosRef.current[i] = el)}
-      style={{
+      sx={{
         position: "absolute",
         top: 0,
         left: 0,
@@ -44,16 +46,16 @@ const VideoSwapper = ({ sources, onChange }) => {
 
   return (
     <div
-      style={{
+      sx={{
         position: "relative",
         borderRadius: "8px",
         overflow: "hidden",
-        width: "25vw",
-        height: "14vw"
+        width: ["60vw", "25vw"],
+        height: ["33vw", "14vw"]
       }}
     >
       <span
-        style={{
+        sx={{
           position: "absolute",
           left: "20px",
           top: "10px",
@@ -61,7 +63,7 @@ const VideoSwapper = ({ sources, onChange }) => {
         }}
       >
         <p
-          style={{
+          sx={{
             position: "relative",
             paddingLeft: "10px",
             fontSize: "12px",
@@ -69,7 +71,7 @@ const VideoSwapper = ({ sources, onChange }) => {
           }}
         >
           <span
-            style={{
+            sx={{
               width: "5px",
               height: "5px",
               backgroundColor: "red",

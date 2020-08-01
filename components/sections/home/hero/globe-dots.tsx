@@ -30,8 +30,8 @@ const globeDots = ({ top, left, image, pulsating }) => {
         alignItems: "center",
         justifyContent: "center",
         opacity: 0,
-        width: "2.778vw",
-        height: "2.778vw",
+        width: ["10vw", "2.778vw"],
+        height: ["10vw", "2.778vw"],
         borderRadius: "50%",
         position: "absolute",
         userSelect: "none",
@@ -46,13 +46,28 @@ const globeDots = ({ top, left, image, pulsating }) => {
         <span
           ref={pulseRef}
           className="pulsating-items"
-          sx={{ width: "5vw", height: "5vw" }}
+          sx={{ width: ["15vw", "5vw"], height: ["15vw", "5vw"] }}
         >
-          <span className={styles.pulse} />
-          <span className={styles.pulse} />
-          <span className={styles.pulse} />
-          <span className={styles.pulse} />
-          <span className={styles.pulse} />
+          <span
+            sx={{ height: ["8vw", "3vw"], width: ["8vw", "3vw"] }}
+            className={styles.pulse}
+          />
+          <span
+            sx={{ height: ["8vw", "3vw"], width: ["8vw", "3vw"] }}
+            className={styles.pulse}
+          />
+          <span
+            sx={{ height: ["8vw", "3vw"], width: ["8vw", "3vw"] }}
+            className={styles.pulse}
+          />
+          <span
+            sx={{ height: ["8vw", "3vw"], width: ["8vw", "3vw"] }}
+            className={styles.pulse}
+          />
+          <span
+            sx={{ height: ["8vw", "3vw"], width: ["8vw", "3vw"] }}
+            className={styles.pulse}
+          />
         </span>
       )}
     </span>

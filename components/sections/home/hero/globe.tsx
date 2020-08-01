@@ -9,18 +9,15 @@ const globeRadius = 200
 const globeWidth = 4098 / 2
 const globeHeight = 1968 / 2
 const mergedGeometry = new THREE.Geometry()
-const pointGeometry = new THREE.SphereGeometry(0.8, 8, 8)
+const pointGeometry = new THREE.SphereGeometry(0.8, 1, 1)
 const pointMaterial = new THREE.MeshBasicMaterial({
   color: "#fff",
-  // opacity: 0,
   transparent: true
 })
 
 const coloredMergedGeometry = new THREE.Geometry()
-const coloredPointGeometry = new THREE.SphereGeometry(1, 8, 8)
+const coloredPointGeometry = new THREE.SphereGeometry(1, 1, 1)
 const coloredPointMaterial = new THREE.MeshBasicMaterial({
-  // opacity: 0.7,
-  // opacity: 0,
   color: "#00A55F",
   transparent: true
 })

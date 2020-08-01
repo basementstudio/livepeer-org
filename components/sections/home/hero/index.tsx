@@ -148,60 +148,60 @@ const HomeHero = () => {
           </div>
           <div ref={dotsRef}>
             <GlobeDot
-              pulsating={globeDotIndex === 0}
+              pulsating={globeDotIndex === 0 || globeDotIndex === 5}
               image="/images/hero/avatar-1.png"
-              left="35%"
+              left={["10%", "35%"]}
               top="15%"
             />
             <GlobeDot
-              pulsating={globeDotIndex === 1}
+              pulsating={false}
               image="/images/hero/avatar-eth.png"
-              left="26%"
-              top="35%"
+              left={["13%", "26%"]}
+              top={["35%", "35%"]}
             />
             <GlobeDot
-              pulsating={globeDotIndex === 2}
+              pulsating={false}
               image="/images/hero/avatar-livepeer.png"
-              left="28%"
-              top="68%"
+              left={["5%", "28%"]}
+              top={["65%", "68%"]}
             />
             <GlobeDot
-              pulsating={globeDotIndex === 3}
+              pulsating={globeDotIndex === 2 || globeDotIndex === 7}
               image="/images/hero/avatar-2.png"
               left="32%"
               top="50%"
             />
 
             <GlobeDot
-              pulsating={globeDotIndex === 4}
+              pulsating={globeDotIndex === 4 || globeDotIndex === 1}
               image="/images/hero/avatar-3.png"
-              left="67%"
-              top="62%"
+              left={["70%", "67%"]}
+              top={["45%", "62%"]}
             />
             <GlobeDot
-              pulsating={globeDotIndex === 5}
+              pulsating={globeDotIndex === 6 || globeDotIndex === 3}
               image="/images/hero/avatar-4.png"
-              left="60%"
-              top="30%"
+              left={["50%", "60%"]}
+              top={["25%", "30%"]}
             />
             <GlobeDot
-              pulsating={globeDotIndex === 6}
+              pulsating={false}
               image="/images/hero/avatar-livepeer.png"
-              left="65%"
-              top="22%"
+              left={["75%", "65%"]}
+              top={["10%", "22%"]}
             />
             <GlobeDot
-              pulsating={globeDotIndex === 7}
+              pulsating={false}
               image="/images/hero/avatar-eth.png"
-              left="75%"
-              top="70%"
+              left={["85%", "75%"]}
+              top={["80%", "70%"]}
             />
           </div>
           <div
             sx={{
               position: "absolute",
               left: "50%",
-              bottom: "-10%",
+              bottom: ["-3%", "-10%"],
               transform: "translateX(-50%)",
               zIndex: "100"
             }}
