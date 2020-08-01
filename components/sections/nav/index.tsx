@@ -197,7 +197,17 @@ const Nav = ({
                   </Link>
                 )
               )}
-            {isPrimer && <Menu />}
+            {isPrimer && (
+              <Box
+                sx={{
+                  top: [hasScrolled ? 12 : 48, 0],
+                  right: [16, 0],
+                  position: ["fixed", "initial"]
+                }}
+              >
+                <Menu />
+              </Box>
+            )}
           </Box>
           {!isPrimer && (
             <IconButton
