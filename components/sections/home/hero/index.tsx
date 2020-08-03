@@ -21,7 +21,11 @@ const HomeHero = () => {
   ]
 
   const onVideoChange = () => {
-    setGlobeDotIndex(Math.round(Math.random() * 7))
+    if (globeDotIndex < 4) {
+      setGlobeDotIndex(globeDotIndex + 1)
+    } else {
+      setGlobeDotIndex(0)
+    }
   }
 
   useEffect(() => {

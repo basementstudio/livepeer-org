@@ -18,6 +18,9 @@ const VideoSwapper = ({ sources, onChange }) => {
         position: "absolute",
         top: 0,
         left: 0,
+        objectFit: "cover",
+        height: "100%",
+        width: "100%",
         opacity: i === currentVideo ? 1 : 0,
         transition: "opacity 1s ease-out"
       }}
