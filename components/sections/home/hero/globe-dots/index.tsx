@@ -6,11 +6,11 @@ import gsap, { Linear } from "gsap"
 import styles from "./globe-dots.module.css"
 
 const GlobeDots = ({ top, left, image, pulsating }) => {
-  const pulseRef = useRef()
+  const pulseRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    //@ts-ignore
-    const targets = pulseRef?.current?.children
+    if (!pulseRef.current) return
+    const targets = pulseRef.current.children
 
     if (targets) {
       gsap.set(targets, { scale: 0 })

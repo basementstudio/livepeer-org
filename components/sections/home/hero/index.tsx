@@ -9,9 +9,9 @@ import Divider from "components/primitives/divider"
 
 const HomeHero = () => {
   const [globeDotIndex, setGlobeDotIndex] = useState(0)
-  const animationTimeline = useRef()
-  const videoBoxRef = useRef()
-  const dotsRef = useRef()
+  const animationTimelineRef = useRef<gsap.core.Timeline>()
+  const videoBoxRef = useRef<HTMLDivElement>(null)
+  const dotsRef = useRef<HTMLDivElement>(null)
 
   const videos = [
     "/hero-videos/1.mp4",
@@ -29,8 +29,9 @@ const HomeHero = () => {
   }
 
   useEffect(() => {
-    // @ts-ignore
-    animationTimeline.current = gsap.timeline({
+    if (!dotsRef.current || !videoBoxRef.current) return
+
+    animationTimelineRef.current = gsap.timeline({
       defaults: {
         delay: 1,
         duration: 0.2,
@@ -39,9 +40,7 @@ const HomeHero = () => {
       }
     })
 
-    // @ts-ignore
-    animationTimeline.current.to(
-      // @ts-ignore
+    animationTimelineRef.current.to(
       dotsRef.current.getElementsByClassName("highlight-dot"),
       {
         duration: 1,
@@ -54,18 +53,9 @@ const HomeHero = () => {
       }
     )
 
-    //@ts-ignore
-    animationTimeline.current.to(
-      videoBoxRef.current,
-      {
-        opacity: 1
-      },
-      "-=1"
-    )
+    animationTimelineRef.current.to(videoBoxRef.current, { opacity: 1 }, "-=1")
 
-    // @ts-ignore
-    animationTimeline.current.to(
-      // @ts-ignore
+    animationTimelineRef.current.to(
       dotsRef.current.getElementsByClassName("highlight-dot"),
       {
         duration: 2,
@@ -80,7 +70,7 @@ const HomeHero = () => {
         }
       }
     )
-  }, [animationTimeline])
+  }, [animationTimelineRef, dotsRef, videoBoxRef])
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -209,7 +199,7 @@ const HomeHero = () => {
               bottom: "-12%",
               transform: "translateX(-50%)",
               zIndex: "100",
-              borderRadius: "8px",
+              borderRadius: "6px",
               overflow: "hidden",
               opacity: 0
             }}
