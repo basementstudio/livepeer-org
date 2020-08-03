@@ -17,11 +17,7 @@ const HomeHero = () => {
     "/hero-videos/1.mp4",
     "/hero-videos/2.mp4",
     "/hero-videos/3.mp4",
-    "/hero-videos/4.mp4",
-    "/hero-videos/5.mp4",
-    "/hero-videos/6.mp4",
-    "/hero-videos/7.mp4",
-    "/hero-videos/8.mp4"
+    "/hero-videos/4.mp4"
   ]
 
   const onVideoChange = () => {
@@ -152,7 +148,7 @@ const HomeHero = () => {
           <Globe />
           <div ref={dotsRef}>
             <GlobeDot
-              pulsating={globeDotIndex === 0 || globeDotIndex === 5}
+              pulsating={globeDotIndex === 0}
               image="/images/hero/avatar-1.png"
               left={["10%", "35%"]}
               top="15%"
@@ -170,20 +166,20 @@ const HomeHero = () => {
               top={["65%", "68%"]}
             />
             <GlobeDot
-              pulsating={globeDotIndex === 2 || globeDotIndex === 7}
+              pulsating={globeDotIndex === 1}
               image="/images/hero/avatar-2.png"
               left={["35%", "32%"]}
               top={["45%", "50%"]}
             />
 
             <GlobeDot
-              pulsating={globeDotIndex === 4 || globeDotIndex === 1}
+              pulsating={globeDotIndex === 2}
               image="/images/hero/avatar-3.png"
               left={["70%", "67%"]}
               top={["40%", "62%"]}
             />
             <GlobeDot
-              pulsating={globeDotIndex === 6 || globeDotIndex === 3}
+              pulsating={globeDotIndex === 3}
               image="/images/hero/avatar-4.png"
               left={["50%", "60%"]}
               top={["15%", "30%"]}
