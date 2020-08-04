@@ -2,34 +2,16 @@
 import { jsx } from "theme-ui"
 import { useRef, useState, useCallback, useEffect } from "react"
 
-const VideoSwapper = ({ sources, onChange }) => {
+type Props = {
+  sources: string[]
+  onChange: () => void
+}
+
+const VideoSwapper = ({ sources, onChange }: Props) => {
   const videosRef = useRef([])
   const [currentVideo, setCurrentVideo] = useState(0)
   const [isInitialized, setIsInitialized] = useState(false)
-
-  const videos = sources.map((source, i) => (
-    <video
-      onEnded={() => {
-        onVideoEnded(i)
-      }}
-      key={i.toString()}
-      ref={(el) => (videosRef.current[i] = el)}
-      sx={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        objectFit: "cover",
-        height: "100%",
-        width: "100%",
-        opacity: i === currentVideo ? 1 : 0,
-        transition: "opacity 1s ease-out"
-      }}
-      src={source}
-      muted
-      playsInline
-    />
-  ))
-
+  
   useEffect(() => {
     if (isInitialized) return
     setIsInitialized(true)
@@ -51,7 +33,6 @@ const VideoSwapper = ({ sources, onChange }) => {
     <div
       sx={{
         position: "relative",
-
         width: ["60vw", "25vw"],
         height: ["33vw", "14vw"]
       }}
@@ -59,35 +40,59 @@ const VideoSwapper = ({ sources, onChange }) => {
       <span
         sx={{
           position: "absolute",
-          left: "20px",
-          top: "10px",
+          left: 3,
+          top: 3,
           zIndex: "101"
         }}
       >
         <p
           sx={{
-            position: "relative",
-            paddingLeft: "10px",
-            fontSize: "12px",
-            textShadow: "0 0 2px #fff"
+            fontSize: 0,
+            backgroundColor: "rgba(191, 12, 12, 0.8)",
+            color: "background",
+            borderRadius: "4px",
+            variant: "layout.flexCenter",
+            fontWeight: 500,
+            px: 2,
+            height: "20px"
           }}
         >
           <span
             sx={{
               width: "5px",
               height: "5px",
-              backgroundColor: "red",
-              borderRadius: "50%",
-              position: "absolute",
-              left: "0",
-              top: "50%",
-              transform: "translateY(-50%)"
+              borderRadius: "full",
+              backgroundColor: "background",
+              mr: 1
             }}
           />
           Live
         </p>
       </span>
-      <div>{videos}</div>
+      <div>
+        {sources.map((source, i) => (
+          <video
+            onEnded={() => {
+              onVideoEnded(i)
+            }}
+            key={`video-swapper-item-${i}`}
+            ref={(el) => (videosRef.current[i] = el)}
+            sx={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        objectFit: "cover",
+        height: "100%",
+        width: "100%",
+        opacity: i === currentVideo ? 1 : 0,
+        transition: "opacity 1s ease-out"
+            }}
+            src={source}
+            muted
+            playsInline
+          />
+        ))}
+      </div>
     </div>
   )
 }
