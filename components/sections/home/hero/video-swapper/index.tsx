@@ -11,7 +11,7 @@ const VideoSwapper = ({ sources, onChange }: Props) => {
   const videosRef = useRef([])
   const [currentVideo, setCurrentVideo] = useState(0)
   const [isInitialized, setIsInitialized] = useState(false)
-
+  
   useEffect(() => {
     if (isInitialized) return
     setIsInitialized(true)
@@ -78,11 +78,14 @@ const VideoSwapper = ({ sources, onChange }: Props) => {
             key={`video-swapper-item-${i}`}
             ref={(el) => (videosRef.current[i] = el)}
             sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              opacity: i === currentVideo ? 1 : 0,
-              transition: "opacity 1s ease-out"
+        position: "absolute",
+        top: 0,
+        left: 0,
+        objectFit: "cover",
+        height: "100%",
+        width: "100%",
+        opacity: i === currentVideo ? 1 : 0,
+        transition: "opacity 1s ease-out"
             }}
             src={source}
             muted
