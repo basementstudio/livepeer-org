@@ -15,6 +15,7 @@ import { useEffect, useCallback, useState } from "react"
 import { FiMenu, FiX } from "react-icons/fi"
 import Link from "next/link"
 import TopNotification, { TopNotificationProps } from "./top-notification"
+import Menu from "components/sections/primer/Menu"
 
 type LinkType = {
   label: string
@@ -49,24 +50,28 @@ const links: LinkType[] = [
 const navHeight = "72px"
 
 const defaultTopNotification: TopNotificationProps = {
-  title: "Livepeer Redesign",
-  description: "Read about our latest improvements.",
+  title: "Introducing",
+  description: "A brand new Livepeer.org",
   link: {
-    label: "Read more",
-    href: "/blog"
+    label: "Read post",
+    href:
+      "https://medium.com/livepeer-blog/introducing-a-brand-new-livepeer-org-3e433519b5d0",
+    isExternal: true
   }
 }
 
 export type NavProps = {
   isInmersive?: boolean
-  background?: "muted" | "dark" | "white" | "black"
+  isPrimer?: boolean
+  background?: "muted" | "dark" | "white" | "black" | "translucent"
   topNotification?: TopNotificationProps
 }
 
 const Nav = ({
   background,
   isInmersive,
-  topNotification = defaultTopNotification
+  topNotification = defaultTopNotification,
+  isPrimer = false
 }: NavProps) => {
   const [hasScrolled, setHasScrolled] = useState(false)
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false)
@@ -102,6 +107,8 @@ const Nav = ({
       bg =
         isInmersive && !hasScrolled && !mobileMenuIsOpen
           ? "transparent"
+          : isPrimer
+          ? "rgba(255, 255, 255, .6)"
           : "muted"
       color = "text"
       break
@@ -119,6 +126,13 @@ const Nav = ({
           : "black"
       color = "background"
       break
+    case "translucent":
+      bg =
+        isInmersive && !hasScrolled && !mobileMenuIsOpen
+          ? "transparent"
+          : "rgba(255, 255, 255, .5)"
+      color = "text"
+      break
   }
 
   return (
@@ -133,7 +147,9 @@ const Nav = ({
           width: "100%",
           zIndex: "header",
           transition: "box-shadow .3s, top .3s",
-          boxShadow: hasScrolled ? "magical" : "none"
+          boxShadow: hasScrolled ? "magical" : "none",
+          backdropFilter:
+            isPrimer && hasScrolled ? "saturate(180%) blur(5px)" : "none"
         }}
       >
         <Container
@@ -144,45 +160,63 @@ const Nav = ({
             height: navHeight
           }}
         >
-          <LivepeerLogo isDark={isDark} />
+          <LivepeerLogo
+            isDark={isDark}
+            disableHover={isPrimer ? true : false}
+          />
           <Box
             sx={{
               "a:not(:last-of-type)": { mr: 5 },
-              display: ["none", null, "flex"]
+              display: [isPrimer ? "null" : "none", null, "flex"]
             }}
           >
-            {links.map((link) =>
-              link.isExternal ? (
-                <NavLink
-                  key={`desktop-nav-link-${link.label}`}
-                  href={link.href}
-                  data-dark={isDark}
-                  target="_blank"
-                >
-                  {link.label}
-                </NavLink>
-              ) : (
-                <Link
-                  key={`desktop-nav-link-${link.label}`}
-                  href={link.href}
-                  as={link.asPath}
-                  passHref
-                >
-                  <NavLink data-dark={isDark}>{link.label}</NavLink>
-                </Link>
-              )
+            {!isPrimer &&
+              links.map((link) =>
+                link.isExternal ? (
+                  <NavLink
+                    key={`desktop-nav-link-${link.label}`}
+                    href={link.href}
+                    data-dark={isDark}
+                    target="_blank"
+                  >
+                    {link.label}
+                  </NavLink>
+                ) : (
+                  <Link
+                    key={`desktop-nav-link-${link.label}`}
+                    href={link.href}
+                    as={link.asPath}
+                    passHref
+                  >
+                    <NavLink data-dark={isDark}>{link.label}</NavLink>
+                  </Link>
+                )
+              )}
+            {isPrimer && (
+              <Box
+                sx={{
+                  top: [hasScrolled ? 12 : 48, 0],
+                  right: [16, 0],
+                  position: ["fixed", "initial"],
+                  pointerEvents: "none"
+                }}
+              >
+                <Menu />
+              </Box>
             )}
           </Box>
-          <IconButton
-            sx={{
-              color,
-              display: ["block", null, "none"],
-              fontSize: 6
-            }}
-            onClick={() => setMobileMenuIsOpen(true)}
-          >
-            <FiMenu size="24px" />
-          </IconButton>
+          {!isPrimer && (
+            <IconButton
+              sx={{
+                color,
+                display: ["block", "block", "none"],
+                fontSize: 6
+              }}
+              onClick={() => setMobileMenuIsOpen(true)}
+            >
+              <FiMenu size="24px" />
+            </IconButton>
+          )}
         </Container>
         <Box
           sx={{

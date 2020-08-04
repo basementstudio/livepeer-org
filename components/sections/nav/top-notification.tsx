@@ -1,10 +1,10 @@
 import { Box, Text, Link as A } from "theme-ui"
-import { FiArrowRight } from "react-icons/fi"
+import { FiArrowRight, FiArrowUpRight } from "react-icons/fi"
 import Link from "next/link"
 import { forwardRef } from "react"
 
 export type TopNotificationProps = {
-  title: string
+  title?: string
   description?: string
   link: {
     label: string
@@ -31,7 +31,9 @@ const TopNotification = forwardRef(
         zIndex: "1"
       }}
     >
-      <Text sx={{ fontWeight: 600, display: "inline" }}>{title}: </Text>
+      {title && (
+        <Text sx={{ fontWeight: 600, display: "inline" }}>{title}: </Text>
+      )}
       {description && <Text sx={{ display: "inline" }}>{description}</Text>}
       {link.isExternal ? (
         <A
@@ -42,12 +44,14 @@ const TopNotification = forwardRef(
             alignItems: "center",
             ml: 2
           }}
+          target="_blank"
+          rel="noopener noreferrer"
           href={link.href}
           data-dark
         >
           {link.label}
           <i sx={{ ml: 1 }}>
-            <FiArrowRight strokeWidth={3} />
+            <FiArrowUpRight strokeWidth={3} />
           </i>
         </A>
       ) : (
