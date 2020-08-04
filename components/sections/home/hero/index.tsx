@@ -11,6 +11,7 @@ const HomeHero = () => {
   const [globeDotIndex, setGlobeDotIndex] = useState(0)
   const animationTimelineRef = useRef<gsap.core.Timeline>()
   const videoBoxRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
   const dotsRef = useRef<HTMLDivElement>(null)
 
   const videos = [
@@ -21,7 +22,7 @@ const HomeHero = () => {
   ]
 
   const onVideoChange = () => {
-    if (globeDotIndex < 4) {
+    if (globeDotIndex < 3) {
       setGlobeDotIndex(globeDotIndex + 1)
     } else {
       setGlobeDotIndex(0)
@@ -38,6 +39,10 @@ const HomeHero = () => {
         ease: Power1.easeOut,
         autoAlpha: 1
       }
+    })
+
+    animationTimelineRef.current.to(headerRef.current, {
+      opacity: 1
     })
 
     animationTimelineRef.current.to(
@@ -81,71 +86,88 @@ const HomeHero = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          height: "105vh",
+          height: "calc(100vh - 40px)",
           overflow: "visible",
-          pt: "200px",
+          pt: ["100px", "150px"],
           pb: 0,
           maxWidth: "100%"
         }}
       >
+        <span
+          ref={headerRef}
+          sx={{
+            opacity: 0,
+            textAlign: "center"
+          }}
+        >
+          <Box
+            sx={{
+              maxWidth: "5xl",
+              mb: "28px",
+              zIndex: "general",
+              position: "relative"
+            }}
+          >
+            <Heading sx={{ variant: ["text.heading.2", "text.heading.1"] }}>
+              The&nbsp;
+              <Text
+                as="span"
+                sx={{
+                  pr: ["2px", "4px"], // Fix text being clipped
+                  background: ({ colors }) =>
+                    `linear-gradient(90deg, #00A55F 0%, ${colors.gradient.mid} 100%)`,
+                  variant: "text.gradientBase"
+                }}
+              >
+                World's
+              </Text>{" "}
+              <Text
+                as="span"
+                sx={{
+                  background: ({ colors }) =>
+                    `linear-gradient(90deg, ${colors.gradient.mid} 0%, #4CF1AC 100%)`,
+                  variant: "text.gradientBase"
+                }}
+              >
+                Open&nbsp;
+              </Text>
+              <br sx={{ display: ["none", null, "block"] }} />
+              Video Infrastructure
+            </Heading>
+            <Divider isTransparent isVertical size={["12px", "16px", "24px"]} />
+            <Heading variant="section.subtitle">
+              Livepeer is a decentralized video transcoding network powered by{" "}
+              <br /> the Ethereum blockchain
+            </Heading>
+          </Box>
+
+          <A
+            variant="buttons.primary"
+            href="/#get-started"
+            sx={{
+              zIndex: "general",
+              position: "relative"
+            }}
+          >
+            Get started
+          </A>
+        </span>
+
         <Box
           sx={{
-            maxWidth: "5xl",
-            mb: ["32px", "40px"],
-            zIndex: "general",
-            position: "relative"
+            position: "relative",
+            width: "100vw",
+            height: "100%"
           }}
         >
-          <Heading sx={{ variant: ["text.heading.2", "text.heading.1"] }}>
-            The&nbsp;
-            <Text
-              as="span"
-              sx={{
-                pr: ["2px", "4px"], // Fix text being clipped
-                background: ({ colors }) =>
-                  `linear-gradient(90deg, #00A55F 0%, ${colors.gradient.mid} 100%)`,
-                variant: "text.gradientBase"
-              }}
-            >
-              World's
-            </Text>{" "}
-            <Text
-              as="span"
-              sx={{
-                background: ({ colors }) =>
-                  `linear-gradient(90deg, ${colors.gradient.mid} 0%, #4CF1AC 100%)`,
-                variant: "text.gradientBase"
-              }}
-            >
-              Open&nbsp;
-            </Text>
-            <br sx={{ display: ["none", null, "block"] }} />
-            Video Infrastructure
-          </Heading>
-          <Divider isTransparent isVertical size={["12px", "16px", "24px"]} />
-          <Heading variant="section.subtitle">
-            Livepeer is a decentralized video transcoding network powered by{" "}
-            <br /> the Ethereum blockchain
-          </Heading>
-        </Box>
-        <A
-          variant="buttons.primary"
-          href="/#get-started"
-          sx={{
-            zIndex: "general",
-            position: "relative"
-          }}
-        >
-          Get started
-        </A>
-        <Box sx={{ position: "relative", width: "100vw", height: "100%" }}>
           <Globe />
+
           <div ref={dotsRef}>
             <GlobeDot
               pulsating={globeDotIndex === 0}
               image="/images/hero/avatar-1.png"
               left={["10%", "35%"]}
-              top="15%"
+              top={["5%", "15%"]}
             />
             <GlobeDot
               pulsating={false}
@@ -163,32 +185,32 @@ const HomeHero = () => {
               pulsating={globeDotIndex === 1}
               image="/images/hero/avatar-2.png"
               left={["35%", "32%"]}
-              top={["45%", "50%"]}
+              top={["40%", "50%"]}
             />
 
             <GlobeDot
               pulsating={globeDotIndex === 2}
               image="/images/hero/avatar-3.png"
               left={["70%", "67%"]}
-              top={["40%", "62%"]}
+              top={["35%", "62%"]}
             />
             <GlobeDot
               pulsating={globeDotIndex === 3}
               image="/images/hero/avatar-4.png"
-              left={["50%", "60%"]}
-              top={["15%", "30%"]}
+              left={["50%", "55%"]}
+              top={["15%", "20%"]}
             />
             <GlobeDot
               pulsating={false}
               image="/images/hero/avatar-livepeer.png"
               left={["75%", "65%"]}
-              top={["10%", "22%"]}
+              top={["0", "22%"]}
             />
             <GlobeDot
               pulsating={false}
               image="/images/hero/avatar-eth.png"
               left={["85%", "75%"]}
-              top={["80%", "70%"]}
+              top={["75%", "70%"]}
             />
           </div>
           <div
@@ -196,7 +218,7 @@ const HomeHero = () => {
             sx={{
               position: "absolute",
               left: "50%",
-              bottom: "-12%",
+              bottom: ["-10%", "2%"],
               transform: "translateX(-50%)",
               zIndex: "100",
               borderRadius: "6px",
